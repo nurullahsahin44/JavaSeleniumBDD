@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="79.229">
+    <testcase classname="Bites Test Cases" name="LoginCase" time="78.888">
+        <failure message="NAME OR PRICE IS NOT EQUAL" type="java.lang.AssertionError">
+            <![CDATA[Given I Open To Chrome Browser..............................................passed
+And I go to hepsiburada.com adress..........................................passed
+And screen to maximize......................................................passed
+And I open login page.......................................................passed
+And I wait to 2 seconds.....................................................passed
+And I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon.passed
+And I clear to my basket and return home page...............................passed
+And I select laptop menu....................................................passed
+And I wait to 3 seconds.....................................................passed
+And I added to basket first item, go to basket and verification price.......failed
+
+StackTrace:
+java.lang.AssertionError: NAME OR PRICE IS NOT EQUAL
+	at org.junit.Assert.fail(Assert.java:89)
+	at StepDefinitions.HomepageSteps.addToBasketFirstItem(HomepageSteps.java:59)
+	at ✽.I added to basket first item, go to basket and verification price(file:///D:/Users/nusahin/Desktop/11.11/selenium-cucumber-java-master/Bites_Automation/src/test/resources/Features/Login.feature:17)
+]]>
+        </failure>
+    </testcase>
+</testsuite>

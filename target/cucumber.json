@@ -1,0 +1,202 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 4676451300,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I Open To Chrome Browser",
+            "match": {
+              "location": "StepDefinitions.Hooks.open_chrome_browser()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 5361114800,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I go to hepsiburada.com adress",
+            "match": {
+              "arguments": [
+                {
+                  "val": "hepsiburada.com",
+                  "offset": 8
+                }
+              ],
+              "location": "StepDefinitions.MySteps.go_to_link(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 591422500,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "screen to maximize",
+            "match": {
+              "location": "StepDefinitions.MySteps.maximize()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2021-11-13T14:36:50.936Z",
+        "line": 10,
+        "name": "LoginCase",
+        "description": "",
+        "id": "bites-test-cases;logincase",
+        "after": [
+          {
+            "result": {
+              "duration": 1319977800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "StepDefinitions.Hooks.close_browser()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 4492073500,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I open login page",
+            "match": {
+              "location": "StepDefinitions.LoginpageSteps.openHomePage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2001904000,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I wait to 2 seconds",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 10
+                }
+              ],
+              "location": "StepDefinitions.MySteps.Sleep(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20804392600,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon",
+            "match": {
+              "arguments": [
+                {
+                  "val": "nusahin44@gmail.com",
+                  "offset": 17
+                },
+                {
+                  "val": "Abc123def",
+                  "offset": 50
+                },
+                {
+                  "val": "bites otomasyon",
+                  "offset": 80
+                }
+              ],
+              "location": "StepDefinitions.LoginpageSteps.loginToApp(java.lang.String,java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20418504800,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "I clear to my basket and return home page",
+            "match": {
+              "location": "StepDefinitions.HomepageSteps.clearMyBasket()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 4941767700,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "I select laptop menu",
+            "match": {
+              "location": "StepDefinitions.HomepageSteps.selectDizustuBilgisayarMenu()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3000769300,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "I wait to 3 seconds",
+            "match": {
+              "arguments": [
+                {
+                  "val": "3",
+                  "offset": 10
+                }
+              ],
+              "location": "StepDefinitions.MySteps.Sleep(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "error_message": "java.lang.AssertionError: NAME OR PRICE IS NOT EQUAL\r\n\tat org.junit.Assert.fail(Assert.java:89)\r\n\tat StepDefinitions.HomepageSteps.addToBasketFirstItem(HomepageSteps.java:59)\r\n\tat ✽.I added to basket first item, go to basket and verification price(file:///D:/Users/nusahin/Desktop/11.11/selenium-cucumber-java-master/Bites_Automation/src/test/resources/Features/Login.feature:17)\r\n",
+              "duration": 11150024600,
+              "status": "failed"
+            },
+            "line": 17,
+            "name": "I added to basket first item, go to basket and verification price",
+            "match": {
+              "location": "StepDefinitions.HomepageSteps.addToBasketFirstItem()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@test"
+          }
+        ]
+      }
+    ],
+    "name": "Bites Test Cases",
+    "description": "",
+    "id": "bites-test-cases",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/Features/Login.feature",
+    "tags": []
+  }
+]
