@@ -117,10 +117,14 @@ public class HomePage {
         matcher = pattern.matcher(ItemPrice);
         String lastPrice = "";
         if (matcher.find()) {
-            lastPrice = matcher.group(1)+matcher.group(2);
+            if(matcher.group(3)==null){
+                lastPrice = matcher.group(1)+matcher.group(2);
+            }else{
+                lastPrice = matcher.group(1)+matcher.group(2)+matcher.group(3);
+            }
         }
         lastPrice = lastPrice+" TL";
-        System.out.println("SEPETE EKLEDIKTEN SONRA KI DEGER = "+ItemPrice);
+        System.out.println("SEPETE EKLEDIKTEN SONRA KI DEGER = "+lastPrice);
         return lastPrice;
     }
 
