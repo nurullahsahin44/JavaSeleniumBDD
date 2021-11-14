@@ -3,6 +3,7 @@ package StepDefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -43,7 +44,7 @@ public class Hooks {
         driver.navigate().to(URL);
     }
 
-    @After
+    @After ("not @API")
     public void  close_browser(){
         driver.close();
         driver.quit();

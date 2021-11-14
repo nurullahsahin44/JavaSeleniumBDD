@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="StepDefinitions.TestRunner" time="28.727" errors="1" skipped="0">
+<testsuite tests="1" failures="0" name="StepDefinitions.TestRunner" time="28.578" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="cucumber.options" value="-t @API"/>
     <property name="java.vm.version" value="12.0.1+12"/>
     <property name="sun.boot.library.path" value="D:\Users\nusahin\Documents\jdk-12.0.1_windows-x64_bin\jdk-12.0.1\bin"/>
     <property name="user.country.format" value="TR"/>
-    <property name="maven.multiModuleProjectDirectory" value="D:\Users\nusahin\Desktop\11.11\selenium-cucumber-java-master\Bites_Automation"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:\Users\nusahin\Documents\JavaSeleniumBDD"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +17,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\Users\nusahin\Desktop\11.11\selenium-cucumber-java-master\Bites_Automation"/>
+    <property name="user.dir" value="D:\Users\nusahin\Documents\JavaSeleniumBDD"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="12.0.1+12"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
@@ -45,7 +46,7 @@
     <property name="java.class.path" value="C:\apache-maven-3.6.3\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="12"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test -Dcucumber.options=-t @API"/>
     <property name="java.home" value="D:\Users\nusahin\Documents\jdk-12.0.1_windows-x64_bin\jdk-12.0.1"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -65,24 +66,24 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Bites Test Cases" name="LoginCase" time="28.727">
+  <testcase classname="HepsiBurada Login Case" name="LoginCase" time="28.578">
     <error message="no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]&quot;}
   (Session info: chrome=95.0.4638.69)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;NTS5CG9153NJ5&apos;, ip: &apos;10.254.42.204&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
+System info: host: &apos;NTS5CG9153NJ5&apos;, ip: &apos;192.168.212.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [970a107595cd1a2a624bb756b353f2d7, findElement {using=xpath, value=//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:49964}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:49964/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 970a107595cd1a2a624bb756b353f2d7" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]&quot;}
+Command: [de5b4d15cda8a1190a5fbb9385070865, findElement {using=xpath, value=//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:61835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61835/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: de5b4d15cda8a1190a5fbb9385070865" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]&quot;}
   (Session info: chrome=95.0.4638.69)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;NTS5CG9153NJ5&apos;, ip: &apos;10.254.42.204&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
+System info: host: &apos;NTS5CG9153NJ5&apos;, ip: &apos;192.168.212.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [970a107595cd1a2a624bb756b353f2d7, findElement {using=xpath, value=//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:49964}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:49964/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 970a107595cd1a2a624bb756b353f2d7
+Command: [de5b4d15cda8a1190a5fbb9385070865, findElement {using=xpath, value=//span[contains(@title,&apos;GiriÅŸ Yap&apos;)]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:61835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61835/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: de5b4d15cda8a1190a5fbb9385070865
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -101,26 +102,26 @@ Session ID: 970a107595cd1a2a624bb756b353f2d7
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
 	at pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)
 	at StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)
-	at ✽.I open login page(file:///D:/Users/nusahin/Desktop/11.11/selenium-cucumber-java-master/Bites_Automation/src/test/resources/Features/Login.feature:11)
+	at ✽.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)
 </error>
     <system-out>
 @test
 Scenario: LoginCase                                                                                   # src/test/resources/Features/Login.feature:10
-Project Path is :D:\Users\nusahin\Desktop\11.11\selenium-cucumber-java-master\Bites_Automation
+Project Path is :D:\Users\nusahin\Documents\JavaSeleniumBDD
 Chrome Browser Is Opened
   Given I Open To Chrome Browser                                                                      # StepDefinitions.Hooks.open_chrome_browser()
-  And I go to hepsiburada.com adress                                                                  # StepDefinitions.MySteps.go_to_link(java.lang.String)
+  And I go to application                                                                             # StepDefinitions.Hooks.go_to_link()
   And screen to maximize                                                                              # StepDefinitions.MySteps.maximize()
-  And I open login page                                                                               # StepDefinitions.LoginpageSteps.openHomePage()
+  When I open login page                                                                              # StepDefinitions.LoginpageSteps.openHomePage()
       org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(@title,&apos;GiriÃ…Å¸ Yap&apos;)]&quot;}
   (Session info: chrome=95.0.4638.69)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;NTS5CG9153NJ5&apos;, ip: &apos;10.254.42.204&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
+System info: host: &apos;NTS5CG9153NJ5&apos;, ip: &apos;192.168.212.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [970a107595cd1a2a624bb756b353f2d7, findElement {using=xpath, value=//span[contains(@title,&apos;GiriÃ…Å¸ Yap&apos;)]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:49964}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:49964/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 970a107595cd1a2a624bb756b353f2d7
+Command: [de5b4d15cda8a1190a5fbb9385070865, findElement {using=xpath, value=//span[contains(@title,&apos;GiriÃ…Å¸ Yap&apos;)]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:61835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61835/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: de5b4d15cda8a1190a5fbb9385070865
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -139,25 +140,23 @@ Session ID: 970a107595cd1a2a624bb756b353f2d7
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
 	at pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)
 	at StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)
-	at âœ½.I open login page(file:///D:/Users/nusahin/Desktop/11.11/selenium-cucumber-java-master/Bites_Automation/src/test/resources/Features/Login.feature:11)
+	at âœ½.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)
 
-  And I wait to 2 seconds                                                                             # StepDefinitions.MySteps.Sleep(int)
   And I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon # StepDefinitions.LoginpageSteps.loginToApp(java.lang.String,java.lang.String,java.lang.String)
-  And I clear to my basket and return home page                                                       # StepDefinitions.HomepageSteps.clearMyBasket()
-  And I select laptop menu                                                                            # StepDefinitions.HomepageSteps.selectDizustuBilgisayarMenu()
-  And I wait to 3 seconds                                                                             # StepDefinitions.MySteps.Sleep(int)
-  And I added to basket first item, go to basket and verification price                               # StepDefinitions.HomepageSteps.addToBasketFirstItem()
+  Then I clear to my basket and return home page                                                      # StepDefinitions.HomepageSteps.clearMyBasket()
+  When I select laptop menu                                                                           # StepDefinitions.HomepageSteps.selectDizustuBilgisayarMenu()
+  Then I added to basket first item, go to basket and verification price                              # StepDefinitions.HomepageSteps.addToBasketFirstItem()
 </system-out>
     <system-err>SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-Starting ChromeDriver 95.0.4638.69 (6a1600ed572fedecd573b6c2b90a22fe6392a410-refs/branch-heads/4638@{#984}) on port 52105
+Starting ChromeDriver 95.0.4638.69 (6a1600ed572fedecd573b6c2b90a22fe6392a410-refs/branch-heads/4638@{#984}) on port 62351
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-Kas 13, 2021 5:32:18 ÖS org.openqa.selenium.remote.ProtocolHandshake createSession
+Kas 14, 2021 12:22:19 ÖS org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
-Kas 13, 2021 5:32:19 ÖS org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+Kas 14, 2021 12:22:19 ÖS org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 INFO: Found exact CDP implementation for version 95
 </system-err>
   </testcase>

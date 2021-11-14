@@ -1,17 +1,17 @@
 -------------------------------------------------------------------------------
 Test set: StepDefinitions.TestRunner
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 30.23 sec <<< FAILURE!
-LoginCase(Bites Test Cases)  Time elapsed: 28.727 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 30.437 sec <<< FAILURE!
+LoginCase(HepsiBurada Login Case)  Time elapsed: 28.578 sec  <<< ERROR!
 org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@title,'Giriş Yap')]"}
   (Session info: chrome=95.0.4638.69)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'NTS5CG9153NJ5', ip: '10.254.42.204', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '12.0.1'
+System info: host: 'NTS5CG9153NJ5', ip: '192.168.212.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '12.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [970a107595cd1a2a624bb756b353f2d7, findElement {using=xpath, value=//span[contains(@title,'Giriş Yap')]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:49964}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:49964/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 970a107595cd1a2a624bb756b353f2d7
+Command: [de5b4d15cda8a1190a5fbb9385070865, findElement {using=xpath, value=//span[contains(@title,'Giriş Yap')]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:61835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61835/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: de5b4d15cda8a1190a5fbb9385070865
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -30,5 +30,5 @@ Session ID: 970a107595cd1a2a624bb756b353f2d7
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
 	at pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)
 	at StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)
-	at ?.I open login page(file:///D:/Users/nusahin/Desktop/11.11/selenium-cucumber-java-master/Bites_Automation/src/test/resources/Features/Login.feature:11)
+	at ?.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)
 

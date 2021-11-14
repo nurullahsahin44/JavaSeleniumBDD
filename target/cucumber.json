@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 4676451300,
+              "duration": 5725761700,
               "status": "passed"
             },
             "line": 4,
@@ -23,25 +23,19 @@
           },
           {
             "result": {
-              "duration": 5361114800,
+              "duration": 5313794100,
               "status": "passed"
             },
             "line": 5,
-            "name": "I go to hepsiburada.com adress",
+            "name": "I go to application",
             "match": {
-              "arguments": [
-                {
-                  "val": "hepsiburada.com",
-                  "offset": 8
-                }
-              ],
-              "location": "StepDefinitions.MySteps.go_to_link(java.lang.String)"
+              "location": "StepDefinitions.Hooks.go_to_link()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 591422500,
+              "duration": 705112800,
               "status": "passed"
             },
             "line": 6,
@@ -54,15 +48,15 @@
         ]
       },
       {
-        "start_timestamp": "2021-11-13T14:36:50.936Z",
+        "start_timestamp": "2021-11-14T09:22:13.700Z",
         "line": 10,
         "name": "LoginCase",
         "description": "",
-        "id": "bites-test-cases;logincase",
+        "id": "hepsiburada-login-case;logincase",
         "after": [
           {
             "result": {
-              "duration": 1319977800,
+              "duration": 1265121700,
               "status": "passed"
             },
             "match": {
@@ -75,40 +69,22 @@
         "steps": [
           {
             "result": {
-              "duration": 4492073500,
-              "status": "passed"
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@title,\u0027GiriÅŸ Yap\u0027)]\"}\n  (Session info: chrome\u003d95.0.4638.69)\nFor documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element\nBuild info: version: \u00274.0.0\u0027, revision: \u00273a21814679\u0027\nSystem info: host: \u0027NTS5CG9153NJ5\u0027, ip: \u0027192.168.212.1\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002712.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [de5b4d15cda8a1190a5fbb9385070865, findElement {using\u003dxpath, value\u003d//span[contains(@title,\u0027GiriÅŸ Yap\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\\Users\\nusahin\\AppData\\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:61835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61835/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}\nSession ID: de5b4d15cda8a1190a5fbb9385070865\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:383)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)\r\n\tat pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)\r\n\tat StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)\r\n\tat ✽.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)\r\n",
+              "duration": 15183590500,
+              "status": "failed"
             },
             "line": 11,
             "name": "I open login page",
             "match": {
               "location": "StepDefinitions.LoginpageSteps.openHomePage()"
             },
-            "keyword": "And "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 2001904000,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 12,
-            "name": "I wait to 2 seconds",
-            "match": {
-              "arguments": [
-                {
-                  "val": "2",
-                  "offset": 10
-                }
-              ],
-              "location": "StepDefinitions.MySteps.Sleep(int)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 20804392600,
-              "status": "passed"
-            },
-            "line": 13,
             "name": "I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon",
             "match": {
               "arguments": [
@@ -131,58 +107,38 @@
           },
           {
             "result": {
-              "duration": 20418504800,
-              "status": "passed"
+              "duration": 997000,
+              "status": "skipped"
             },
-            "line": 14,
+            "line": 13,
             "name": "I clear to my basket and return home page",
             "match": {
               "location": "StepDefinitions.HomepageSteps.clearMyBasket()"
             },
-            "keyword": "And "
+            "keyword": "Then "
           },
           {
             "result": {
-              "duration": 4941767700,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 15,
+            "line": 14,
             "name": "I select laptop menu",
             "match": {
               "location": "StepDefinitions.HomepageSteps.selectDizustuBilgisayarMenu()"
             },
-            "keyword": "And "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 3000769300,
-              "status": "passed"
+              "duration": 1994300,
+              "status": "skipped"
             },
-            "line": 16,
-            "name": "I wait to 3 seconds",
-            "match": {
-              "arguments": [
-                {
-                  "val": "3",
-                  "offset": 10
-                }
-              ],
-              "location": "StepDefinitions.MySteps.Sleep(int)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "error_message": "java.lang.AssertionError: NAME OR PRICE IS NOT EQUAL\r\n\tat org.junit.Assert.fail(Assert.java:89)\r\n\tat StepDefinitions.HomepageSteps.addToBasketFirstItem(HomepageSteps.java:59)\r\n\tat ✽.I added to basket first item, go to basket and verification price(file:///D:/Users/nusahin/Desktop/11.11/selenium-cucumber-java-master/Bites_Automation/src/test/resources/Features/Login.feature:17)\r\n",
-              "duration": 11150024600,
-              "status": "failed"
-            },
-            "line": 17,
+            "line": 15,
             "name": "I added to basket first item, go to basket and verification price",
             "match": {
               "location": "StepDefinitions.HomepageSteps.addToBasketFirstItem()"
             },
-            "keyword": "And "
+            "keyword": "Then "
           }
         ],
         "tags": [
@@ -192,9 +148,9 @@
         ]
       }
     ],
-    "name": "Bites Test Cases",
+    "name": "HepsiBurada Login Case",
     "description": "",
-    "id": "bites-test-cases",
+    "id": "hepsiburada-login-case",
     "keyword": "Feature",
     "uri": "file:src/test/resources/Features/Login.feature",
     "tags": []
