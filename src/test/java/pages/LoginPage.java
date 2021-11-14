@@ -14,7 +14,7 @@ public class LoginPage {
     private By username_txt = By.id("txtUserName");
     private By password_txt = By.id("txtPassword");
     private By login_button = By.id("btnLogin");
-    private By shortcutLoginText = By.xpath("//span[contains(@title,'Giriş Yap')]");
+    private By shortcutMyAccountButton = By.id("myAccount");
     private By shortcutLoginButton = By.id("login");
     private By forgetMyPassword = By.xpath("//span[contains(.,'Şifremi unuttum')]");
     private By profilName = By.xpath("//span[contains(text(),'Hesabım')]/following-sibling::span");
@@ -61,8 +61,8 @@ public class LoginPage {
 
     public void mouseOverShortcutLogin(){
         Actions actions = new Actions(driver);
-        WebElement we = driver.findElement(shortcutLoginText);
-        actions.moveToElement(we).moveToElement(driver.findElement(shortcutLoginText)).click().build().perform();
+        WebElement we = driver.findElement(shortcutMyAccountButton);
+        actions.moveToElement(we).moveToElement(driver.findElement(shortcutMyAccountButton)).build().perform();
     }
 
     public void clickShourtcutLoginButton(){
