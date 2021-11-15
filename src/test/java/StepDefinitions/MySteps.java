@@ -12,8 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -29,9 +28,17 @@ public class MySteps {
 
     LoginPage loginPage;
     HomePage homePage;
+    MyBasketPage myBasketPage;
+    CategoriesPage categoriesPage;
+    OrderPage orderPage;
+
 
     public MySteps(){
         driver = Hooks.driver;
+        homePage = PageFactory.initElements(driver,HomePage.class);
+        myBasketPage = PageFactory.initElements(driver,MyBasketPage.class);
+        categoriesPage = PageFactory.initElements(driver,CategoriesPage.class);
+        orderPage = PageFactory.initElements(driver,OrderPage.class);
     }
 
 
@@ -87,7 +94,33 @@ public class MySteps {
     }
 
 
+    @And("^I clear to my basket and return home page$")
+    public void clearMyBasket() throws InterruptedException {
+        myBasketPage.myBasketPageDeleteItems();
+    }
 
+
+    @And("^I added to basket first item, go to basket and verification price$")
+    public void addToBasketFirstItem() throws InterruptedException {
+        categoriesPage.clickFirstItem();
+        Sleep(2);
+        switchTab();
+        Sleep(1);
+        String price = orderPage.savePrice();
+        String name = orderPage.saveItemName();
+        Sleep(1);
+        orderPage.clickAddToBasketButton();
+        homePage.goToMyBasket();
+        Sleep(1);
+        String LastName = myBasketPage.saveBasketPageLastItemName();
+        String LastPrice = myBasketPage.saveBasketPageLastItemPrice();
+        if(price.equals(LastPrice) && name.equals(LastName)){
+            // DO NOTHING
+        }else{
+            Assert.fail("NAME OR PRICE IS NOT EQUAL");
+        }
+
+    }
 
 
 }

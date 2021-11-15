@@ -15,29 +15,29 @@ public class Hooks {
     public static WebDriver driver = null;
     String URL = "https://hepsiburada.com";
 
-    @Given("^I Open To Chrome Browser$")
-    public void open_chrome_browser() {
-        String projectPath = System.getProperty("user.dir");
-        System.out.println("Project Path is :" + projectPath);
-        System.setProperty("webdriver.chrome.driver", projectPath + "/src/test/resources/Drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        //driver.manage().window().maximize();
-        System.out.println("Chrome Browser Is Opened");
+    @Given("^I Open To (Chrome|Firefox) Browser$")
+    public void open_chrome_browser(String browser) {
+        if(browser.equals("Chrome")){
+            String projectPath = System.getProperty("user.dir");
+            System.out.println("Project Path is :" + projectPath);
+            System.setProperty("webdriver.chrome.driver", projectPath + "/src/test/resources/Drivers/chromedriver.exe");
+            driver = new ChromeDriver();
+            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+            //driver.manage().window().maximize();
+            System.out.println("Chrome Browser Is Opened");
+        }else {
+            String projectPath = System.getProperty("user.dir");
+            System.out.println("Project Path is :" + projectPath);
+            System.setProperty("webdriver.gecko.driver", projectPath + "/src/test/resources/Drivers/geckodriver.exe");
+            driver = new FirefoxDriver();
+            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+            //driver.manage().window().maximize();
+            System.out.println("Firefox Browser Is Opened");
+        }
     }
 
-    @Given("^I Open To Firefox Browser$")
-    public void open_firefox_browser(){
-        String projectPath = System.getProperty("user.dir");
-        System.out.println("Project Path is :" + projectPath);
-        System.setProperty("webdriver.gecko.driver", projectPath + "/src/test/resources/Drivers/geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        //driver.manage().window().maximize();
-        System.out.println("Firefox Browser Is Opened");
-    }
 
     @And("^I go to application")
     public void go_to_link() {

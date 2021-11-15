@@ -29,7 +29,6 @@ public class HomepageSteps {
 
     @And("^I search (\\w+(?: \\w+)*)$")
     public void searchMainPage(String value){
-        homePage = PageFactory.initElements(driver,HomePage.class);
         homePage.searchMainPage(value);
     }
 
@@ -39,32 +38,8 @@ public class HomepageSteps {
         homePage.mouseoverComputerTabletMenu();
     }
 
-    @And("^I added to basket first item, go to basket and verification price$")
-    public void addToBasketFirstItem() throws InterruptedException {
-        homePage.clickFirstItem();
-        mySteps.Sleep(2);
-        mySteps.switchTab();
-        mySteps.Sleep(1);
-        String price = homePage.savePrice();
-        String name = homePage.saveItemName();
-        mySteps.Sleep(1);
-        homePage.clickAddToBasketButton();
-        homePage.goToMyBasket();
-        mySteps.Sleep(1);
-        String LastName = homePage.saveBasketPageLastItemName();
-        String LastPrice = homePage.saveBasketPageLastItemPrice();
-        if(price.equals(LastPrice) && name.equals(LastName)){
-            // DO NOTHING
-        }else{
-            Assert.fail("NAME OR PRICE IS NOT EQUAL");
-        }
 
-    }
 
-    @And("^I clear to my basket and return home page$")
-    public void clearMyBasket() throws InterruptedException {
-       homePage.myBasketPageDeleteItems();
-    }
 
 
     @And("^I go to my basket$")
