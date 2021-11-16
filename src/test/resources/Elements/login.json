@@ -1,0 +1,7 @@
+{
+  "elements": {
+    "username textbox": "#txtUserName",
+    "password textbox": "#txtPassword",
+    "login button": "#btnLogin"
+  }
+}

@@ -1,9 +1,15 @@
 package StepDefinitions;
 
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
 import io.cucumber.java.After;
 import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -16,8 +22,12 @@ import pages.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -41,6 +51,54 @@ public class MySteps {
         orderPage = PageFactory.initElements(driver,OrderPage.class);
     }
 
+    @And("^I see in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element")
+    public void seeElement(String page, String element) {
+        By elementKey = findSelector(page,element);
+        driver.findElement(elementKey).isDisplayed();
+        System.out.println(elementKey+"  ELEMENTI GORULDU");
+    }
+
+
+    @And("^I see in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element and fill (.*)")
+    public void seeElementAndFill(String page, String element, String value) {
+        By elementKey = findSelector(page,element);
+        driver.findElement(elementKey).sendKeys(value);
+        System.out.println(elementKey+"  ELEMENTINE "+value+" DEGERI YAZILDI");
+    }
+
+
+    @And("^I see in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element is click")
+    public void seeElementAndClick(String page, String element) {
+        By elementKey = findSelector(page,element);
+        driver.findElement(elementKey).click();
+        System.out.println(elementKey+"  ELEMENTINE TIKLANDI");
+    }
+
+
+    By findSelector(String page, String element) {
+        JSONParser parser = new JSONParser();
+        By EE = null;
+        try {
+            String projectPath = System.getProperty("user.dir");
+            Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\resources\\Elements\\" + page + ".json"));
+            String jsonPath = projectPath + "\\src\\test\\resources\\Elements\\" + page + ".json";
+            JSONObject jsonObject = (JSONObject) obj;
+            Object document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+            String elementKey = JsonPath.read(document, "$.elements.['" + element+ "']");
+            if(elementKey.charAt(0) == '/'  || elementKey.charAt(0) == '('){
+                EE = By.xpath(elementKey);
+                return EE;
+            }else if(elementKey.charAt(0) == '#'){
+                EE = By.id(elementKey.substring(1));
+                return EE;
+            }else{
+                Assert.fail("COULD NOT FIND ELEMENT");
+            }
+        } catch (Exception e) {
+            Assert.fail("COULD NOT FIND ELEMENT : "+ element);
+        }
+        return  EE;
+    }
 
 
 
