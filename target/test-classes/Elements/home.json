@@ -1,0 +1,5 @@
+{
+  "elements": {
+    "elektronik categories": "//*[contains(@class,'navigationBar')]//span[text()='Elektronik']"
+  }
+}

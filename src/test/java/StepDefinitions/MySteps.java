@@ -25,10 +25,7 @@ import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class MySteps {
@@ -41,6 +38,7 @@ public class MySteps {
     MyBasketPage myBasketPage;
     CategoriesPage categoriesPage;
     OrderPage orderPage;
+    Hashtable<String,String> my_dict = new Hashtable<String,String>();
 
 
     public MySteps(){
@@ -74,6 +72,60 @@ public class MySteps {
         System.out.println(elementKey+"  ELEMENTINE TIKLANDI");
     }
 
+    @And("^I save in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element, get text and save the (\\w+(?: \\w+)*)")
+    public void seeElementAndSave(String page, String element, String variableName) {
+        By elementKey = findSelector(page,element);
+        my_dict.put("the "+variableName,driver.findElement(elementKey).getText());
+        System.out.println(driver.findElement(elementKey).getText()+ " DEGERI "+ "the " +variableName + " DEGISKENINE KAYDEDILDI");
+    }
+
+    @And("^I verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" texts")
+    public void verifyElementAndTextStrings(String value1, String value2){
+        if(my_dict.get(value1) == null){
+            Assert.fail(value1+" is NULL");
+        }
+        if(my_dict.get(value1).equals(value2)){
+            System.out.println(my_dict.get(value1) + " IS EQUALS " + value2);
+        }else{
+            Assert.assertEquals(value1,value2);
+        }
+    }
+
+    @And("^I not verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" texts")
+    public void notVerifyElementAndTextStrings(String value1, String value2){
+        if(my_dict.get(value1) == null){
+            Assert.fail(value1+" is NULL");
+        }
+        if(!my_dict.get(value1).equals(value2)){
+            System.out.println(my_dict.get(value1) + " IS NOT EQUALS " + value2);
+        }else{
+            Assert.fail(my_dict.get(value1)+" EQUALS "+value2);
+        }
+    }
+
+    @And("^I verify (\\w+(?: \\w+)*) equals (\\w+(?: \\w+)*)")
+    public void verificationElementAndElementStrings(String value1, String value2){
+        if(my_dict.get(value1) == null || my_dict.get(value2) == null){
+            Assert.fail(value1+" or "+value2+" is NULL");
+        }
+        if(my_dict.get(value1).equals(my_dict.get(value2))){
+            System.out.println(my_dict.get(value1) + " == " + my_dict.get(value2));
+        }else{
+            Assert.assertEquals(my_dict.get(value1),my_dict.get(value2));
+        }
+    }
+
+    @And("^I not verify (\\w+(?: \\w+)*) equals (\\w+(?: \\w+)*)")
+    public void notVerificationElementAndElementStrings(String value1, String value2){
+        if(my_dict.get(value1) == null || my_dict.get(value2) == null){
+            Assert.fail(value1+" or "+value2+" is NULL");
+        }
+        if(!my_dict.get(value1).equals(my_dict.get(value2))){
+            System.out.println(my_dict.get(value1) + " IS NOT EQUALS " + my_dict.get(value2));
+        }else{
+            Assert.fail(my_dict.get(value1)+" EQUALS "+my_dict.get(value2));
+        }
+    }
 
     By findSelector(String page, String element) {
         JSONParser parser = new JSONParser();
@@ -99,8 +151,6 @@ public class MySteps {
         }
         return  EE;
     }
-
-
 
 
     @And("^screen to maximize$")

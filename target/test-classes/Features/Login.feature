@@ -24,3 +24,8 @@ Feature: HepsiBurada Login Case
     And I see in login page password textbox element and fill Abc123def
     And I see in login page login button element is click
     And I wait to 10 seconds
+
+    And I save in home page elektronik categories element, get text and save the electronic name
+    Then I verify the electronic name equals texts "Elektronik"
+
+    Then I verify the electronic name equals the deneme
