@@ -1,6 +1,6 @@
 {
   "elements": {
-    "username textbox": "#txtUserName",
+    "username textbox": "//*[@id='txtUserName']",
     "password textbox": "#txtPassword",
     "login button": "#btnLogin"
   }

@@ -1,9 +1,9 @@
 Feature: HepsiBurada Login Case
 
   Background:
-    #Given I Open To Chrome Browser
-    #And I go to application
-    #And screen to maximize
+    Given I Open To Chrome Browser
+    And I go to application
+    And screen to maximize
 
 
   @test
@@ -16,10 +16,7 @@ Feature: HepsiBurada Login Case
 
 
 
-  Scenario: test2
-    Given I Open To Chrome Browser
-    And I go to application
-    And screen to maximize
+  Scenario: Deployment
     When I open login page
     And I see in login page username textbox element
     And I see in login page password textbox element
