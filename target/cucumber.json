@@ -11,19 +11,25 @@
         "steps": [
           {
             "result": {
-              "duration": 5331743600,
+              "duration": 6226872100,
               "status": "passed"
             },
             "line": 4,
             "name": "I Open To Chrome Browser",
             "match": {
-              "location": "StepDefinitions.Hooks.open_chrome_browser()"
+              "arguments": [
+                {
+                  "val": "Chrome",
+                  "offset": 10
+                }
+              ],
+              "location": "StepDefinitions.Hooks.open_chrome_browser(java.lang.String)"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 5383605900,
+              "duration": 6580409700,
               "status": "passed"
             },
             "line": 5,
@@ -35,7 +41,7 @@
           },
           {
             "result": {
-              "duration": 658241100,
+              "duration": 1012291900,
               "status": "passed"
             },
             "line": 6,
@@ -48,15 +54,15 @@
         ]
       },
       {
-        "start_timestamp": "2021-11-14T11:49:00.287Z",
-        "line": 10,
-        "name": "LoginCase",
+        "start_timestamp": "2021-11-16T18:00:06.837Z",
+        "line": 19,
+        "name": "Deployment",
         "description": "",
-        "id": "hepsiburada-login-case;logincase",
+        "id": "hepsiburada-login-case;deployment",
         "after": [
           {
             "result": {
-              "duration": 1299522500,
+              "duration": 1438198300,
               "status": "passed"
             },
             "match": {
@@ -69,11 +75,10 @@
         "steps": [
           {
             "result": {
-              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[contains(@title,\u0027GiriÅŸ Yap\u0027)]\"}\n  (Session info: chrome\u003d95.0.4638.69)\nFor documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element\nBuild info: version: \u00274.0.0\u0027, revision: \u00273a21814679\u0027\nSystem info: host: \u0027NTS5CG9153NJ5\u0027, ip: \u0027192.168.212.1\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002712.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [9dd02e8ecae680f7f4ca9d4fbfd4d212, findElement {using\u003dxpath, value\u003d//span[contains(@title,\u0027GiriÅŸ Yap\u0027)]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\\Users\\nusahin\\AppData\\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:53089}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53089/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}\nSession ID: 9dd02e8ecae680f7f4ca9d4fbfd4d212\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:383)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)\r\n\tat pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)\r\n\tat StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)\r\n\tat ✽.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)\r\n",
-              "duration": 15106180500,
-              "status": "failed"
+              "duration": 5082408500,
+              "status": "passed"
             },
-            "line": 11,
+            "line": 20,
             "name": "I open login page",
             "match": {
               "location": "StepDefinitions.LoginpageSteps.openHomePage()"
@@ -82,66 +87,284 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 2254044700,
+              "status": "passed"
             },
-            "line": 12,
-            "name": "I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon",
+            "line": 21,
+            "name": "I see login in page username textbox element",
             "match": {
               "arguments": [
                 {
-                  "val": "nusahin44@gmail.com",
-                  "offset": 17
+                  "val": "login",
+                  "offset": 6
                 },
                 {
-                  "val": "Abc123def",
-                  "offset": 50
-                },
-                {
-                  "val": "bites otomasyon",
-                  "offset": 80
+                  "val": "username textbox",
+                  "offset": 20
                 }
               ],
-              "location": "StepDefinitions.LoginpageSteps.loginToApp(java.lang.String,java.lang.String,java.lang.String)"
+              "location": "StepDefinitions.MySteps.seeElement(java.lang.String,java.lang.String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 66821100,
+              "status": "passed"
             },
-            "line": 13,
-            "name": "I clear to my basket and return home page",
+            "line": 22,
+            "name": "I see login in page password textbox element",
             "match": {
-              "location": "StepDefinitions.HomepageSteps.clearMyBasket()"
+              "arguments": [
+                {
+                  "val": "login",
+                  "offset": 6
+                },
+                {
+                  "val": "password textbox",
+                  "offset": 20
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElement(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 951451200,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "I fill login in page:",
+            "match": {
+              "arguments": [
+                {
+                  "val": "login",
+                  "offset": 7
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElementAndFill(java.lang.String,java.util.Map\u003cjava.lang.String, java.lang.String\u003e)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "username textbox",
+                  "nusahin44@gmail.com"
+                ]
+              },
+              {
+                "cells": [
+                  "password textbox",
+                  "Abc123def"
+                ]
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 183507600,
+              "status": "passed"
+            },
+            "line": 26,
+            "name": "I click login in page login button element",
+            "match": {
+              "arguments": [
+                {
+                  "val": "login",
+                  "offset": 8
+                },
+                {
+                  "val": "login button",
+                  "offset": 22
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElementAndClick(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 7902337400,
+              "status": "passed"
+            },
+            "line": 27,
+            "name": "I see home in page profile name element",
+            "match": {
+              "arguments": [
+                {
+                  "val": "home",
+                  "offset": 6
+                },
+                {
+                  "val": "profile name",
+                  "offset": 19
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElement(java.lang.String,java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 80752800,
+              "status": "passed"
             },
-            "line": 14,
-            "name": "I select laptop menu",
+            "line": 28,
+            "name": "I save in home page profile name element, get text and save the profile",
             "match": {
-              "location": "StepDefinitions.HomepageSteps.selectDizustuBilgisayarMenu()"
+              "arguments": [
+                {
+                  "val": "home",
+                  "offset": 10
+                },
+                {
+                  "val": "profile name",
+                  "offset": 20
+                },
+                {
+                  "val": "profile",
+                  "offset": 64
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElementAndSave(java.lang.String,java.lang.String,java.lang.String)"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "skipped"
+              "status": "passed"
             },
-            "line": 15,
-            "name": "I added to basket first item, go to basket and verification price",
+            "line": 29,
+            "name": "I verify the profile equals \"bites otomasyon\" with text",
             "match": {
-              "location": "StepDefinitions.HomepageSteps.addToBasketFirstItem()"
+              "arguments": [
+                {
+                  "val": "the profile",
+                  "offset": 9
+                },
+                {
+                  "val": "bites otomasyon",
+                  "offset": 29
+                }
+              ],
+              "location": "StepDefinitions.MySteps.verifyElementAndTextStrings(java.lang.String,java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 5001192600,
+              "status": "passed"
+            },
+            "line": 31,
+            "name": "I wait to 5 seconds",
+            "match": {
+              "arguments": [
+                {
+                  "val": "5",
+                  "offset": 10
+                }
+              ],
+              "location": "StepDefinitions.MySteps.Sleep(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 88719800,
+              "status": "passed"
+            },
+            "line": 32,
+            "name": "I see home in page elektronic categories element",
+            "match": {
+              "arguments": [
+                {
+                  "val": "home",
+                  "offset": 6
+                },
+                {
+                  "val": "elektronic categories",
+                  "offset": 19
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElement(java.lang.String,java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 92608900,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "I save in home page elektronic categories element, get text and save the electronic name",
+            "match": {
+              "arguments": [
+                {
+                  "val": "home",
+                  "offset": 10
+                },
+                {
+                  "val": "elektronic categories",
+                  "offset": 20
+                },
+                {
+                  "val": "electronic name",
+                  "offset": 73
+                }
+              ],
+              "location": "StepDefinitions.MySteps.seeElementAndSave(java.lang.String,java.lang.String,java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 34,
+            "name": "I verify the electronic name equals \"Elektronik\" with text",
+            "match": {
+              "arguments": [
+                {
+                  "val": "the electronic name",
+                  "offset": 9
+                },
+                {
+                  "val": "Elektronik",
+                  "offset": 37
+                }
+              ],
+              "location": "StepDefinitions.MySteps.verifyElementAndTextStrings(java.lang.String,java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 998400,
+              "status": "passed"
+            },
+            "line": 35,
+            "name": "I not verify the electronic name equals \"TestAutomation\" texts",
+            "match": {
+              "arguments": [
+                {
+                  "val": "the electronic name",
+                  "offset": 13
+                },
+                {
+                  "val": "TestAutomation",
+                  "offset": 41
+                }
+              ],
+              "location": "StepDefinitions.MySteps.notVerifyElementAndTextStrings(java.lang.String,java.lang.String)"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@test"
+            "name": "@test2"
           }
         ]
       }

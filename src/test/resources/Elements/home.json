@@ -1,5 +1,6 @@
 {
   "elements": {
-    "elektronic categories": "//*[contains(@class,'navigationBar')]//span[text()='Elektronik']"
+    "elektronic categories": "//*[contains(@class,'navigationBar')]//span[text()='Elektronik']",
+    "profile name": "//*[@title='Hesabım']//span[2]"
   }
 }

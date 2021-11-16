@@ -1,46 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="28.382">
-    <testcase classname="HepsiBurada Login Case" name="LoginCase" time="27.909">
-        <failure message="no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//span[contains(@title,'GiriÅŸ Yap')]&quot;}&#10;  (Session info: chrome=95.0.4638.69)&#10;For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element&#10;Build info: version: '4.0.0', revision: '3a21814679'&#10;System info: host: 'NTS5CG9153NJ5', ip: '192.168.212.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '12.0.1'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [9dd02e8ecae680f7f4ca9d4fbfd4d212, findElement {using=xpath, value=//span[contains(@title,'GiriÅŸ Yap')]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:53089}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53089/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 9dd02e8ecae680f7f4ca9d4fbfd4d212" type="org.openqa.selenium.NoSuchElementException">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="37.537">
+    <testcase classname="HepsiBurada Login Case" name="Deployment" time="37.132">
+        <system-out>
             <![CDATA[Given I Open To Chrome Browser..............................................passed
 And I go to application.....................................................passed
 And screen to maximize......................................................passed
-When I open login page......................................................failed
-And I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon.skipped
-Then I clear to my basket and return home page..............................skipped
-When I select laptop menu...................................................skipped
-Then I added to basket first item, go to basket and verification price......skipped
-
-StackTrace:
-org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@title,'GiriÅŸ Yap')]"}
-  (Session info: chrome=95.0.4638.69)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'NTS5CG9153NJ5', ip: '192.168.212.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '12.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [9dd02e8ecae680f7f4ca9d4fbfd4d212, findElement {using=xpath, value=//span[contains(@title,'GiriÅŸ Yap')]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:53089}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53089/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 9dd02e8ecae680f7f4ca9d4fbfd4d212
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:383)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
-	at pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)
-	at StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)
-	at ✽.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)
+When I open login page......................................................passed
+And I see login in page username textbox element............................passed
+And I see login in page password textbox element............................passed
+When I fill login in page:..................................................passed
+And I click login in page login button element..............................passed
+Then I see home in page profile name element................................passed
+When I save in home page profile name element, get text and save the profile.passed
+Then I verify the profile equals "bites otomasyon" with text................passed
+And I wait to 5 seconds.....................................................passed
+Then I see home in page elektronic categories element.......................passed
+When I save in home page elektronic categories element, get text and save the electronic name.passed
+Then I verify the electronic name equals "Elektronik" with text.............passed
+Then I not verify the electronic name equals "TestAutomation" texts.........passed
 ]]>
-        </failure>
+        </system-out>
     </testcase>
 </testsuite>

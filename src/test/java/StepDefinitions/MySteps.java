@@ -18,6 +18,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.*;
 
 import java.awt.*;
@@ -39,6 +41,7 @@ public class MySteps {
     CategoriesPage categoriesPage;
     OrderPage orderPage;
     Hashtable<String,String> my_dict = new Hashtable<String,String>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(MySteps.class);
 
 
     public MySteps(){
@@ -49,43 +52,46 @@ public class MySteps {
         orderPage = PageFactory.initElements(driver,OrderPage.class);
     }
 
-    @And("^I see in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element")
+    @And("^I see (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
     public void seeElement(String page, String element) {
         By elementKey = findSelector(page,element);
         driver.findElement(elementKey).isDisplayed();
-        System.out.println(elementKey+"  ELEMENTI GORULDU");
+        LOGGER.info("SEE :"+elementKey);
     }
 
 
-    @And("^I see in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element and fill (.*)")
-    public void seeElementAndFill(String page, String element, String value) {
-        By elementKey = findSelector(page,element);
-        driver.findElement(elementKey).sendKeys(value);
-        System.out.println(elementKey+"  ELEMENTINE "+value+" DEGERI YAZILDI");
+    @And("^I fill (\\w+(?: \\w+)*) in page:")
+    public void seeElementAndFill(String page, Map<String, String> map) {
+        for (String key : map.keySet()) {
+            By elementKey = findSelector(page,key);
+            driver.findElement(elementKey).sendKeys(map.get(key));
+            LOGGER.info("FILLED "+elementKey+" = "+map.get(key));
+        }
     }
 
 
-    @And("^I see in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element is click")
+
+    @And("^I click (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
     public void seeElementAndClick(String page, String element) {
         By elementKey = findSelector(page,element);
         driver.findElement(elementKey).click();
-        System.out.println(elementKey+"  ELEMENTINE TIKLANDI");
+        LOGGER.info("CLICKED "+ element);
     }
 
     @And("^I save in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element, get text and save the (\\w+(?: \\w+)*)")
     public void seeElementAndSave(String page, String element, String variableName) {
         By elementKey = findSelector(page,element);
         my_dict.put("the "+variableName,driver.findElement(elementKey).getText());
-        System.out.println(driver.findElement(elementKey).getText()+ " DEGERI "+ "the " +variableName + " DEGISKENINE KAYDEDILDI");
+        LOGGER.info("SAVED "+variableName+" = "+driver.findElement(elementKey).getText());
     }
 
-    @And("^I verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" texts")
+    @And("^I verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" with text")
     public void verifyElementAndTextStrings(String value1, String value2){
         if(my_dict.get(value1) == null){
             Assert.fail(value1+" is NULL");
         }
         if(my_dict.get(value1).equals(value2)){
-            System.out.println(my_dict.get(value1) + " IS EQUALS " + value2);
+            LOGGER.info(my_dict.get(value1) + " Is Equals "+value2);
         }else{
             Assert.assertEquals(value1,value2);
         }
@@ -97,7 +103,7 @@ public class MySteps {
             Assert.fail(value1+" is NULL");
         }
         if(!my_dict.get(value1).equals(value2)){
-            System.out.println(my_dict.get(value1) + " IS NOT EQUALS " + value2);
+            LOGGER.info(my_dict.get(value1)+ " Is Not Equals "+ value2);
         }else{
             Assert.fail(my_dict.get(value1)+" EQUALS "+value2);
         }
@@ -109,7 +115,7 @@ public class MySteps {
             Assert.fail(value1+" or "+value2+" is NULL");
         }
         if(my_dict.get(value1).equals(my_dict.get(value2))){
-            System.out.println(my_dict.get(value1) + " == " + my_dict.get(value2));
+            LOGGER.info(my_dict.get(value1)+ " Is Equals "+ my_dict.get(value2));
         }else{
             Assert.assertEquals(my_dict.get(value1),my_dict.get(value2));
         }
@@ -121,7 +127,7 @@ public class MySteps {
             Assert.fail(value1+" or "+value2+" is NULL");
         }
         if(!my_dict.get(value1).equals(my_dict.get(value2))){
-            System.out.println(my_dict.get(value1) + " IS NOT EQUALS " + my_dict.get(value2));
+            LOGGER.info(my_dict.get(value1) + " Is Not Equals " + my_dict.get(value2));
         }else{
             Assert.fail(my_dict.get(value1)+" EQUALS "+my_dict.get(value2));
         }
