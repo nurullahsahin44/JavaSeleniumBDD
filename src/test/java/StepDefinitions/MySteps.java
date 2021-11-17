@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import io.cucumber.java.After;
@@ -20,10 +21,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pages.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,28 +36,25 @@ public class MySteps {
 
     public static WebDriver driver = null;
 
-    LoginPage loginPage;
-    HomePage homePage;
-    MyBasketPage myBasketPage;
-    CategoriesPage categoriesPage;
-    OrderPage orderPage;
     Hashtable<String,String> my_dict = new Hashtable<String,String>();
+    ObjectMapper PAGE = new ObjectMapper();
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MySteps.class);
 
 
     public MySteps(){
         driver = Hooks.driver;
-        homePage = PageFactory.initElements(driver,HomePage.class);
-        myBasketPage = PageFactory.initElements(driver,MyBasketPage.class);
-        categoriesPage = PageFactory.initElements(driver,CategoriesPage.class);
-        orderPage = PageFactory.initElements(driver,OrderPage.class);
     }
 
     @And("^I see (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
     public void seeElement(String page, String element) {
         By elementKey = findSelector(page,element);
-        driver.findElement(elementKey).isDisplayed();
-        LOGGER.info("SEE :"+elementKey);
+        try{
+            driver.findElement(elementKey).isDisplayed();
+            LOGGER.info("SEE :"+elementKey);
+        }catch (Exception ee){
+            Assert.fail("COULD NOT FIND ELEMENT : "+elementKey);
+        }
     }
 
 
@@ -74,8 +72,20 @@ public class MySteps {
     @And("^I click (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
     public void seeElementAndClick(String page, String element) {
         By elementKey = findSelector(page,element);
-        driver.findElement(elementKey).click();
-        LOGGER.info("CLICKED "+ element);
+        try{
+            driver.findElement(elementKey).click();
+            LOGGER.info("CLICKED "+ element);
+        }catch (Exception ee){
+            Assert.fail("COULD NOT FIND ELEMENT : "+elementKey);
+        }
+    }
+
+    @And("^I mouseover (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
+    public void mouseOverPageAndElement(String page, String element){
+        By elementKey = findSelector(page,element);
+        Actions action = new Actions(driver);
+        WebElement we = driver.findElement(elementKey);
+        action.moveToElement(we).moveToElement(driver.findElement(elementKey)).build().perform();
     }
 
     @And("^I save in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element, get text and save the (\\w+(?: \\w+)*)")
@@ -138,8 +148,8 @@ public class MySteps {
         By EE = null;
         try {
             String projectPath = System.getProperty("user.dir");
-            Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\resources\\Elements\\" + page + ".json"));
-            String jsonPath = projectPath + "\\src\\test\\resources\\Elements\\" + page + ".json";
+            Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\pages\\" + page + ".json"));
+            String jsonPath = projectPath + "\\src\\test\\java\\pages\\" + page + ".json";
             JSONObject jsonObject = (JSONObject) obj;
             Object document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
             String elementKey = JsonPath.read(document, "$.elements.['" + element+ "']");
@@ -173,12 +183,6 @@ public class MySteps {
     }
 
 
-    @And("^I mouseover element:(.*)$")
-    public void mouseoverElement(String ElementKey)  {
-        Actions actions = new Actions(driver);
-        WebElement we = driver.findElement(By.xpath(ElementKey));
-        actions.moveToElement(we).moveToElement(driver.findElement(By.xpath(ElementKey))).click().build().perform();
-    }
 
     @And("^switch to new window$")
     public void switchTab(){
@@ -187,54 +191,6 @@ public class MySteps {
     }
 
 
-    @And("^I click to (.*)$")
-    public void click_element(String ElementKey)  {
-        driver.findElement(By.xpath(ElementKey)).click();
-    }
-
-
-    @And("^I fill:")
-    public void fill(Map<String, String> map){
-        for (String key : map.keySet()) {
-            System.out.println(key + "=" + map.get(key));
-            driver.findElement(By.xpath(key)).sendKeys(map.get(key));
-        }
-    }
-
-
-    @And("^(.*) Element to press ENTER$")
-    public void press_enter(String ElementKey){
-        driver.findElement(By.xpath(ElementKey)).sendKeys(Keys.ENTER);
-    }
-
-
-    @And("^I clear to my basket and return home page$")
-    public void clearMyBasket() throws InterruptedException {
-        myBasketPage.myBasketPageDeleteItems();
-    }
-
-
-    @And("^I added to basket first item, go to basket and verification price$")
-    public void addToBasketFirstItem() throws InterruptedException {
-        categoriesPage.clickFirstItem();
-        Sleep(2);
-        switchTab();
-        Sleep(1);
-        String price = orderPage.savePrice();
-        String name = orderPage.saveItemName();
-        Sleep(1);
-        orderPage.clickAddToBasketButton();
-        homePage.goToMyBasket();
-        Sleep(1);
-        String LastName = myBasketPage.saveBasketPageLastItemName();
-        String LastPrice = myBasketPage.saveBasketPageLastItemPrice();
-        if(price.equals(LastPrice) && name.equals(LastName)){
-            // DO NOTHING
-        }else{
-            Assert.fail("NAME OR PRICE IS NOT EQUAL");
-        }
-
-    }
 
 
 }

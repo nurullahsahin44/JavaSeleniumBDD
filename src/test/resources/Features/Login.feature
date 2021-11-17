@@ -6,20 +6,17 @@ Feature: HepsiBurada Login Case
     And screen to maximize
 
 
-  @test
-  Scenario: LoginCase
-    When I open login page
-    And I LOGIN username:nusahin44@gmail.com and password:Abc123def and see profileName:bites otomasyon
-    Then I clear to my basket and return home page
-    When I select laptop menu
-    Then I added to basket first item, go to basket and verification price
-
-
   @test2
   Scenario: Deployment
-    When I open login page
-    And I see login in page username textbox element
-    And I see login in page password textbox element
+
+    When I see login in page my account element
+    And I mouseover login in page my account element
+    And I wait to 2 seconds
+    And I click login in page open login page button element
+
+
+    Then I see login in page username textbox element
+    Then I see login in page password textbox element
     When I fill login in page:
     |username textbox|nusahin44@gmail.com|
     |password textbox|Abc123def          |

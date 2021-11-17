@@ -2,6 +2,8 @@
   "elements": {
     "username textbox": "//*[@id='txtUserName']",
     "password textbox": "#txtPassword",
-    "login button": "#btnLogin"
+    "login button": "#btnLogin",
+    "my account": "#myAccount",
+    "open login page button": "#login"
   }
 }
