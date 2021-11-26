@@ -6,28 +6,29 @@ Feature: HepsiBurada Login Case
     And screen to maximize
 
 
-  @test2
+
   Scenario: Deployment
-
-    When I see login in page my account element
-    And I mouseover login in page my account element
+    When I see login page
+    When I see my account element
+    And I mouseover my account element
     And I wait to 2 seconds
-    And I click login in page open login page button element
+    And I click open login page button element
 
-
-    Then I see login in page username textbox element
-    Then I see login in page password textbox element
-    When I fill login in page:
+    Then I see username textbox element
+    Then I see password textbox element
+    When I fill:
     |username textbox|nusahin44@gmail.com|
     |password textbox|Abc123def          |
-    And I click login in page login button element
-    Then I see home in page profile name element
-    When I save in home page profile name element, get text and save the profile
+    And I click login button element
+
+    Then I see home page
+    Then I see profile name element
+    When I save profile name element, get text and save the profile
     Then I verify the profile equals "bites otomasyon" with text
 
     And I wait to 5 seconds
-    Then I see home in page elektronic categories element
-    When I save in home page elektronic categories element, get text and save the electronic name
+    Then I see elektronic categories element
+    When I save elektronic categories element, get text and save the electronic name
     Then I verify the electronic name equals "Elektronik" with text
     Then I not verify the electronic name equals "TestAutomation" texts
 

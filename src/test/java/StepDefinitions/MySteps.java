@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.MapType;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import io.cucumber.java.After;
@@ -36,141 +37,141 @@ public class MySteps {
 
     public static WebDriver driver = null;
 
-    Hashtable<String,String> my_dict = new Hashtable<String,String>();
+    Hashtable<String, String> my_dict = new Hashtable<String, String>();
     ObjectMapper PAGE = new ObjectMapper();
+    String CurrentPage = "";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MySteps.class);
 
 
-    public MySteps(){
+    public MySteps() {
         driver = Hooks.driver;
     }
 
-    @And("^I see (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
-    public void seeElement(String page, String element) {
-        By elementKey = findSelector(page,element);
-        try{
-            driver.findElement(elementKey).isDisplayed();
-            LOGGER.info("SEE :"+elementKey);
-        }catch (Exception ee){
-            Assert.fail("COULD NOT FIND ELEMENT : "+elementKey);
-        }
+
+    @And("^I see (\\w+(?: \\w+)*) page")
+    public void seePage(String page) throws IOException, ParseException {
+        CurrentPage = page;
+    }
+
+    @And("^I see (\\w+(?: \\w+)*) element")
+    public void seeElement(String elemenyKey) throws IOException, ParseException {
+        By element = findSelector(elemenyKey);
+        driver.findElement(element).isDisplayed();
     }
 
 
-    @And("^I fill (\\w+(?: \\w+)*) in page:")
-    public void seeElementAndFill(String page, Map<String, String> map) {
+    By findSelector(String element) throws IOException, ParseException {
+        By EE = null;
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        Object page = CurrentPage;
+        String projectPath = System.getProperty("user.dir");
+
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\pages\\" + page + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String elementKey = JsonPath.read(document, "$.elements.['" + element + "']");
+        if (elementKey.charAt(0) == '/' || elementKey.charAt(0) == '(') {
+            EE = By.xpath(elementKey);
+            return EE;
+        } else if (elementKey.charAt(0) == '#') {
+            EE = By.id(elementKey.substring(1));
+            return EE;
+        } else {
+            Assert.fail("COULD NOT FIND ELEMENT");
+        }
+        return EE;
+    }
+
+    @And("^I fill:")
+    public void seeElementAndFill(Map<String, String> map) throws IOException, ParseException {
         for (String key : map.keySet()) {
-            By elementKey = findSelector(page,key);
+            By elementKey = findSelector(key);
             driver.findElement(elementKey).sendKeys(map.get(key));
-            LOGGER.info("FILLED "+elementKey+" = "+map.get(key));
+            LOGGER.info("FILLED " + elementKey + " = " + map.get(key));
         }
     }
 
 
-
-    @And("^I click (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
-    public void seeElementAndClick(String page, String element) {
-        By elementKey = findSelector(page,element);
-        try{
+    @And("^I click (\\w+(?: \\w+)*) element")
+    public void seeElementAndClick(String element) throws IOException, ParseException {
+        By elementKey = findSelector( element);
+        try {
             driver.findElement(elementKey).click();
-            LOGGER.info("CLICKED "+ element);
-        }catch (Exception ee){
-            Assert.fail("COULD NOT FIND ELEMENT : "+elementKey);
+            LOGGER.info("CLICKED " + element);
+        } catch (Exception ee) {
+            Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
         }
     }
 
-    @And("^I mouseover (\\w+(?: \\w+)*) in page (\\w+(?: \\w+)*) element")
-    public void mouseOverPageAndElement(String page, String element){
-        By elementKey = findSelector(page,element);
+    @And("^I mouseover (\\w+(?: \\w+)*) element")
+    public void mouseOverPageAndElement(String element) throws IOException, ParseException {
+        By elementKey = findSelector(element);
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(elementKey);
         action.moveToElement(we).moveToElement(driver.findElement(elementKey)).build().perform();
     }
 
-    @And("^I save in (\\w+(?: \\w+)*) page (\\w+(?: \\w+)*) element, get text and save the (\\w+(?: \\w+)*)")
-    public void seeElementAndSave(String page, String element, String variableName) {
-        By elementKey = findSelector(page,element);
-        my_dict.put("the "+variableName,driver.findElement(elementKey).getText());
-        LOGGER.info("SAVED "+variableName+" = "+driver.findElement(elementKey).getText());
+    @And("^I save (\\w+(?: \\w+)*) element, get text and save the (\\w+(?: \\w+)*)")
+    public void seeElementAndSave( String element, String variableName) throws IOException, ParseException {
+        By elementKey = findSelector(element);
+        my_dict.put("the " + variableName, driver.findElement(elementKey).getText());
+        LOGGER.info("SAVED " + variableName + " = " + driver.findElement(elementKey).getText());
     }
 
     @And("^I verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" with text")
-    public void verifyElementAndTextStrings(String value1, String value2){
-        if(my_dict.get(value1) == null){
-            Assert.fail(value1+" is NULL");
+    public void verifyElementAndTextStrings(String value1, String value2) {
+        if (my_dict.get(value1) == null) {
+            Assert.fail(value1 + " is NULL");
         }
-        if(my_dict.get(value1).equals(value2)){
-            LOGGER.info(my_dict.get(value1) + " Is Equals "+value2);
-        }else{
-            Assert.assertEquals(value1,value2);
+        if (my_dict.get(value1).equals(value2)) {
+            LOGGER.info(my_dict.get(value1) + " Is Equals " + value2);
+        } else {
+            Assert.assertEquals(value1, value2);
         }
     }
 
     @And("^I not verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" texts")
-    public void notVerifyElementAndTextStrings(String value1, String value2){
-        if(my_dict.get(value1) == null){
-            Assert.fail(value1+" is NULL");
+    public void notVerifyElementAndTextStrings(String value1, String value2) {
+        if (my_dict.get(value1) == null) {
+            Assert.fail(value1 + " is NULL");
         }
-        if(!my_dict.get(value1).equals(value2)){
-            LOGGER.info(my_dict.get(value1)+ " Is Not Equals "+ value2);
-        }else{
-            Assert.fail(my_dict.get(value1)+" EQUALS "+value2);
+        if (!my_dict.get(value1).equals(value2)) {
+            LOGGER.info(my_dict.get(value1) + " Is Not Equals " + value2);
+        } else {
+            Assert.fail(my_dict.get(value1) + " EQUALS " + value2);
         }
     }
 
     @And("^I verify (\\w+(?: \\w+)*) equals (\\w+(?: \\w+)*)")
-    public void verificationElementAndElementStrings(String value1, String value2){
-        if(my_dict.get(value1) == null || my_dict.get(value2) == null){
-            Assert.fail(value1+" or "+value2+" is NULL");
+    public void verificationElementAndElementStrings(String value1, String value2) {
+        if (my_dict.get(value1) == null || my_dict.get(value2) == null) {
+            Assert.fail(value1 + " or " + value2 + " is NULL");
         }
-        if(my_dict.get(value1).equals(my_dict.get(value2))){
-            LOGGER.info(my_dict.get(value1)+ " Is Equals "+ my_dict.get(value2));
-        }else{
-            Assert.assertEquals(my_dict.get(value1),my_dict.get(value2));
+        if (my_dict.get(value1).equals(my_dict.get(value2))) {
+            LOGGER.info(my_dict.get(value1) + " Is Equals " + my_dict.get(value2));
+        } else {
+            Assert.assertEquals(my_dict.get(value1), my_dict.get(value2));
         }
     }
 
     @And("^I not verify (\\w+(?: \\w+)*) equals (\\w+(?: \\w+)*)")
-    public void notVerificationElementAndElementStrings(String value1, String value2){
-        if(my_dict.get(value1) == null || my_dict.get(value2) == null){
-            Assert.fail(value1+" or "+value2+" is NULL");
+    public void notVerificationElementAndElementStrings(String value1, String value2) {
+        if (my_dict.get(value1) == null || my_dict.get(value2) == null) {
+            Assert.fail(value1 + " or " + value2 + " is NULL");
         }
-        if(!my_dict.get(value1).equals(my_dict.get(value2))){
+        if (!my_dict.get(value1).equals(my_dict.get(value2))) {
             LOGGER.info(my_dict.get(value1) + " Is Not Equals " + my_dict.get(value2));
-        }else{
-            Assert.fail(my_dict.get(value1)+" EQUALS "+my_dict.get(value2));
+        } else {
+            Assert.fail(my_dict.get(value1) + " EQUALS " + my_dict.get(value2));
         }
     }
 
-    By findSelector(String page, String element) {
-        JSONParser parser = new JSONParser();
-        By EE = null;
-        try {
-            String projectPath = System.getProperty("user.dir");
-            Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\pages\\" + page + ".json"));
-            String jsonPath = projectPath + "\\src\\test\\java\\pages\\" + page + ".json";
-            JSONObject jsonObject = (JSONObject) obj;
-            Object document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
-            String elementKey = JsonPath.read(document, "$.elements.['" + element+ "']");
-            if(elementKey.charAt(0) == '/'  || elementKey.charAt(0) == '('){
-                EE = By.xpath(elementKey);
-                return EE;
-            }else if(elementKey.charAt(0) == '#'){
-                EE = By.id(elementKey.substring(1));
-                return EE;
-            }else{
-                Assert.fail("COULD NOT FIND ELEMENT");
-            }
-        } catch (Exception e) {
-            Assert.fail("COULD NOT FIND ELEMENT : "+ element);
-        }
-        return  EE;
-    }
 
 
     @And("^screen to maximize$")
-    public void maximize(){
+    public void maximize() {
         driver.manage().window().maximize();
     }
 
@@ -183,14 +184,11 @@ public class MySteps {
     }
 
 
-
     @And("^switch to new window$")
-    public void switchTab(){
-        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+    public void switchTab() {
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
     }
-
-
 
 
 }
