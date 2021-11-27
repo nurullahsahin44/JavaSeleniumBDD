@@ -1,4 +1,7 @@
 {
+  "waitPageLoad": {
+    "elementKey": ""
+  },
   "elements": {
     "username textbox": "//*[@id='txtUserName']",
     "password textbox": "#txtPassword",

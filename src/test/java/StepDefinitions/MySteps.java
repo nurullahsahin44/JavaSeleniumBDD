@@ -52,6 +52,19 @@ public class MySteps {
     @And("^I see (\\w+(?: \\w+)*) page")
     public void seePage(String page) throws IOException, ParseException {
         CurrentPage = page;
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        String projectPath = System.getProperty("user.dir");
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\pages\\" + page + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String MustElementKey = JsonPath.read(document, "$.waitPageLoad.elementKey");
+        if(MustElementKey.equals("")){
+            // DO NOTHING
+        }else{
+            seeElement(MustElementKey);
+            LOGGER.info("SUCCESSFULLY SEE PAGE "+page);
+        }
     }
 
     @And("^I see (\\w+(?: \\w+)*) element")
