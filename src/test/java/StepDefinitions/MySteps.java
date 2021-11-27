@@ -65,9 +65,13 @@ public class MySteps {
         By EE = null;
         Object document = null;
         JSONParser parser = new JSONParser();
-        Object page = CurrentPage;
+        Object page = null;
+        if(CurrentPage.equals("")){
+            Assert.fail("BEFORE TEST STEPS HAVE TO SEE ANY PAGE 'I see *** page' ");
+        }else{
+            page = CurrentPage;
+        }
         String projectPath = System.getProperty("user.dir");
-
         Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\pages\\" + page + ".json"));
         JSONObject jsonObject = (JSONObject) obj;
         document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
@@ -90,6 +94,7 @@ public class MySteps {
             By elementKey = findSelector(key);
             driver.findElement(elementKey).sendKeys(map.get(key));
             LOGGER.info("FILLED " + elementKey + " = " + map.get(key));
+            System.out.println("FILLED " + elementKey + " = " + map.get(key));
         }
     }
 
@@ -100,6 +105,7 @@ public class MySteps {
         try {
             driver.findElement(elementKey).click();
             LOGGER.info("CLICKED " + element);
+            System.out.println("CLICKED " + element);
         } catch (Exception ee) {
             Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
         }
@@ -118,6 +124,7 @@ public class MySteps {
         By elementKey = findSelector(element);
         my_dict.put("the " + variableName, driver.findElement(elementKey).getText());
         LOGGER.info("SAVED " + variableName + " = " + driver.findElement(elementKey).getText());
+        System.out.println("SAVED " + variableName + " = " + driver.findElement(elementKey).getText());
     }
 
     @And("^I verify (\\w+(?: \\w+)*) equals \"([^\"]*)\" with text")
@@ -127,6 +134,7 @@ public class MySteps {
         }
         if (my_dict.get(value1).equals(value2)) {
             LOGGER.info(my_dict.get(value1) + " Is Equals " + value2);
+            System.out.println(my_dict.get(value1) + " Is Equals " + value2);
         } else {
             Assert.assertEquals(value1, value2);
         }
@@ -139,6 +147,7 @@ public class MySteps {
         }
         if (!my_dict.get(value1).equals(value2)) {
             LOGGER.info(my_dict.get(value1) + " Is Not Equals " + value2);
+            System.out.println(my_dict.get(value1) + " Is Not Equals " + value2);
         } else {
             Assert.fail(my_dict.get(value1) + " EQUALS " + value2);
         }
@@ -151,6 +160,7 @@ public class MySteps {
         }
         if (my_dict.get(value1).equals(my_dict.get(value2))) {
             LOGGER.info(my_dict.get(value1) + " Is Equals " + my_dict.get(value2));
+            System.out.println(my_dict.get(value1) + " Is Equals " + my_dict.get(value2));
         } else {
             Assert.assertEquals(my_dict.get(value1), my_dict.get(value2));
         }
@@ -163,6 +173,7 @@ public class MySteps {
         }
         if (!my_dict.get(value1).equals(my_dict.get(value2))) {
             LOGGER.info(my_dict.get(value1) + " Is Not Equals " + my_dict.get(value2));
+            System.out.println(my_dict.get(value1) + " Is Not Equals " + my_dict.get(value2));
         } else {
             Assert.fail(my_dict.get(value1) + " EQUALS " + my_dict.get(value2));
         }

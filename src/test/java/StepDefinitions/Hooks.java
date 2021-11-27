@@ -17,9 +17,9 @@ public class Hooks {
 
     @Given("^I Open To (Chrome|Firefox) Browser$")
     public void open_chrome_browser(String browser) {
+        String projectPath = System.getProperty("user.dir");
+        System.out.println("Project Path is :" + projectPath);
         if(browser.equals("Chrome")){
-            String projectPath = System.getProperty("user.dir");
-            System.out.println("Project Path is :" + projectPath);
             System.setProperty("webdriver.chrome.driver", projectPath + "/src/test/resources/Drivers/chromedriver.exe");
             driver = new ChromeDriver();
             driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -27,8 +27,6 @@ public class Hooks {
             //driver.manage().window().maximize();
             System.out.println("Chrome Browser Is Opened");
         }else {
-            String projectPath = System.getProperty("user.dir");
-            System.out.println("Project Path is :" + projectPath);
             System.setProperty("webdriver.gecko.driver", projectPath + "/src/test/resources/Drivers/geckodriver.exe");
             driver = new FirefoxDriver();
             driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

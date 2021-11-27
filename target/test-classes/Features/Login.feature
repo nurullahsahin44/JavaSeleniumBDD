@@ -15,11 +15,14 @@ Feature: HepsiBurada Login Case
     And I click open login page button element
 
     Then I see username textbox element
+    When I fill:
+      |username textbox|nusahin44@gmail.com|
+    And I click login button element
+
     Then I see password textbox element
     When I fill:
-    |username textbox|nusahin44@gmail.com|
     |password textbox|Abc123def          |
-    And I click login button element
+    And I click login button2 element
 
     Then I see home page
     Then I see profile name element
