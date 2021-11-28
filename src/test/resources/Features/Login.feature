@@ -6,7 +6,6 @@ Feature: HepsiBurada Login Case
     And screen to maximize
 
 
-
   Scenario: Deployment
     When I see login page
     When I see my account element
@@ -15,13 +14,14 @@ Feature: HepsiBurada Login Case
     And I click open login page button element
 
     Then I see username textbox element
+    And I am registered with user1
     When I fill:
-      |username textbox|nusahin44@gmail.com|
+      | username textbox | my username |
     And I click login button element
 
     Then I see password textbox element
     When I fill:
-    |password textbox|Abc123def          |
+      | password textbox | my password |
     And I click login button2 element
 
     Then I see home page
@@ -29,7 +29,7 @@ Feature: HepsiBurada Login Case
     When I save profile name element, get text and save the profile
     Then I verify the profile equals "bites otomasyon" with text
 
-    And I wait to 5 seconds
+    And I wait to 3 seconds
     Then I see elektronic categories element
     When I save elektronic categories element, get text and save the electronic name
     Then I verify the electronic name equals "Elektronik" with text

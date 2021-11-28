@@ -36,7 +36,7 @@ public class MySteps {
 
 
     public static WebDriver driver = null;
-
+    Hashtable<String, String> user_dict = new Hashtable<String, String>();
     Hashtable<String, String> my_dict = new Hashtable<String, String>();
     ObjectMapper PAGE = new ObjectMapper();
     String CurrentPage = "";
@@ -85,7 +85,7 @@ public class MySteps {
             page = CurrentPage;
         }
         String projectPath = System.getProperty("user.dir");
-        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\pages\\" + page + ".json"));
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Pages\\" + page + ".json"));
         JSONObject jsonObject = (JSONObject) obj;
         document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
         String elementKey = JsonPath.read(document, "$.elements.['" + element + "']");
@@ -101,13 +101,45 @@ public class MySteps {
         return EE;
     }
 
+    @And("^I am registered with (\\w+(?: \\w+)*)")
+    public void registeredInformation(String user) throws IOException, ParseException {
+        findAndSaveUser(user);
+    }
+
+    public void findAndSaveUser(String userJson) throws IOException, ParseException {
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        String projectPath = System.getProperty("user.dir");
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Users\\" + userJson + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String userName = JsonPath.read(document, "$.username");
+        String password = JsonPath.read(document, "$.password");
+        user_dict.put("my username",userName);
+        user_dict.put("my password",password);
+    }
+
     @And("^I fill:")
     public void seeElementAndFill(Map<String, String> map) throws IOException, ParseException {
         for (String key : map.keySet()) {
-            By elementKey = findSelector(key);
-            driver.findElement(elementKey).sendKeys(map.get(key));
-            LOGGER.info("FILLED " + elementKey + " = " + map.get(key));
-            System.out.println("FILLED " + elementKey + " = " + map.get(key));
+            if(!map.get(key).equals("my username") && !map.get(key).equals("my password")){
+                By elementKey = findSelector(key);
+                driver.findElement(elementKey).sendKeys(map.get(key));
+                LOGGER.info("FILLED " + elementKey + " = " + map.get(key));
+                System.out.println("FILLED " + elementKey + " = " + map.get(key));
+            }else if(map.get(key).equals("my username")){
+                String username = user_dict.get("my username");
+                By elementKey = findSelector(key);
+                driver.findElement(elementKey).sendKeys(username);
+                LOGGER.info("FILLED " + elementKey + " = " + username);
+                System.out.println("FILLED " + elementKey + " = " + username);
+            }else{
+                String password = user_dict.get("my password");
+                By elementKey = findSelector(key);
+                driver.findElement(elementKey).sendKeys(password);
+                LOGGER.info("FILLED " + elementKey + " = " + password);
+                System.out.println("FILLED " + elementKey + " = " + password);
+            }
         }
     }
 
