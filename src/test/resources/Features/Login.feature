@@ -8,7 +8,7 @@ Feature: HepsiBurada Login Case
 
   Scenario: Deployment
     When I see login page
-    When I see my account element
+    When I see my account element in 20 seconds
     And I mouseover my account element
     And I wait to 2 seconds
     And I click open login page button element
