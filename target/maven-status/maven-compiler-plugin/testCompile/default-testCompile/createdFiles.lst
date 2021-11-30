@@ -1,7 +1,4 @@
 StepDefinitions\MySteps.class
 StepDefinitions\Hooks.class
-pages\LoginPage.class
-pages\HomePage.class
+StepDefinitions\API.class
 StepDefinitions\TestRunner.class
-StepDefinitions\LoginpageSteps.class
-StepDefinitions\HomepageSteps.class

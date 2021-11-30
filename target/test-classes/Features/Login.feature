@@ -1,12 +1,12 @@
 Feature: HepsiBurada Login Case
 
   Background:
-    #Given I Open To Chrome Browser
-    Given I Open To Firefox Browser
+    Given I Open To Chrome Browser
     And I go to application
     And screen to maximize
 
 
+    @test2
   Scenario: Deployment
     When I see login page
     When I see my account element in 20 seconds

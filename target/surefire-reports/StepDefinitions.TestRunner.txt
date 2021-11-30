@@ -1,22 +1,21 @@
 -------------------------------------------------------------------------------
 Test set: StepDefinitions.TestRunner
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 30.437 sec <<< FAILURE!
-LoginCase(HepsiBurada Login Case)  Time elapsed: 28.578 sec  <<< ERROR!
-org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@title,'Giriş Yap')]"}
-  (Session info: chrome=95.0.4638.69)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 29.89 sec <<< FAILURE!
+Deployment(HepsiBurada Login Case)  Time elapsed: 28.742 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@title='HesabÄ±m']//span[2]"}
+  (Session info: chrome=96.0.4664.45)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'NTS5CG9153NJ5', ip: '192.168.212.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '12.0.1'
+System info: host: 'NURULLAH_SAHIN', ip: '192.168.1.40', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [de5b4d15cda8a1190a5fbb9385070865, findElement {using=xpath, value=//span[contains(@title,'Giriş Yap')]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: D:\Users\nusahin\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:61835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:61835/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: de5b4d15cda8a1190a5fbb9385070865
+Command: [226fa4f5911ad1f13fce5eb801de0b21, findElement {using=xpath, value=//*[@title='HesabÄ±m']//span[2]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 96.0.4664.45, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: C:\Users\NURULLAH\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:3186}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:3186/devtool..., se:cdpVersion: 96.0.4664.45, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 226fa4f5911ad1f13fce5eb801de0b21
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
@@ -28,7 +27,7 @@ Session ID: de5b4d15cda8a1190a5fbb9385070865
 	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:383)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
-	at pages.LoginPage.mouseOverShortcutLogin(LoginPage.java:64)
-	at StepDefinitions.LoginpageSteps.openHomePage(LoginpageSteps.java:40)
-	at ?.I open login page(file:///D:/Users/nusahin/Documents/JavaSeleniumBDD/src/test/resources/Features/Login.feature:11)
+	at StepDefinitions.MySteps.seeElement(MySteps.java:75)
+	at StepDefinitions.MySteps.seePage(MySteps.java:67)
+	at ✽.I see home page(file:///C:/Users/NURULLAH/Documents/GitHub/MesinYuvarlak/JavaSeleniumBDD/src/test/resources/Features/Login.feature:28)
 
