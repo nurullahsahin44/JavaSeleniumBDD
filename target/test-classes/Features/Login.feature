@@ -6,7 +6,7 @@ Feature: HepsiBurada Login Case
     And screen to maximize
 
 
-    @test2
+  @test2
   Scenario: Deployment
     When I see login page
     When I see my account element in 20 seconds

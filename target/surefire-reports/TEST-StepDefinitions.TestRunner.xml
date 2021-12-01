@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="StepDefinitions.TestRunner" time="28.742" errors="1" skipped="0">
+<testsuite tests="0" failures="0" name="StepDefinitions.TestRunner" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.2.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -64,65 +64,4 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="HepsiBurada Login Case" name="Deployment" time="28.742">
-    <error message="no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@title=&apos;HesabÄ±m&apos;]//span[2]&quot;}
-  (Session info: chrome=96.0.4664.45)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;NURULLAH_SAHIN&apos;, ip: &apos;192.168.1.40&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.1&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [226fa4f5911ad1f13fce5eb801de0b21, findElement {using=xpath, value=//*[@title=&apos;HesabÄ±m&apos;]//span[2]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 96.0.4664.45, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: C:\Users\NURULLAH\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:3186}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:3186/devtool..., se:cdpVersion: 96.0.4664.45, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 226fa4f5911ad1f13fce5eb801de0b21" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@title=&apos;HesabÄ±m&apos;]//span[2]&quot;}
-  (Session info: chrome=96.0.4664.45)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
-System info: host: &apos;NURULLAH_SAHIN&apos;, ip: &apos;192.168.1.40&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.1&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [226fa4f5911ad1f13fce5eb801de0b21, findElement {using=xpath, value=//*[@title=&apos;HesabÄ±m&apos;]//span[2]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 96.0.4664.45, chrome: {chromedriverVersion: 95.0.4638.69 (6a1600ed572fe..., userDataDir: C:\Users\NURULLAH\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:3186}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:3186/devtool..., se:cdpVersion: 96.0.4664.45, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 226fa4f5911ad1f13fce5eb801de0b21
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:139)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:383)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
-	at StepDefinitions.MySteps.seeElement(MySteps.java:75)
-	at StepDefinitions.MySteps.seePage(MySteps.java:67)
-	at ✽.I see home page(file:///C:/Users/NURULLAH/Documents/GitHub/MesinYuvarlak/JavaSeleniumBDD/src/test/resources/Features/Login.feature:28)
-</error>
-    <system-out>Project Path is :C:\Users\NURULLAH\Documents\GitHub\MesinYuvarlak\JavaSeleniumBDD
-Chrome Browser Is Opened
-CLICKED open login page button
-FILLED By.xpath: //*[@id=&apos;txtUserName&apos;] = nusahin44@gmail.com
-CLICKED login button
-FILLED By.id: txtPassword = Abc123def
-CLICKED login button2
-</system-out>
-    <system-err>SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-Starting ChromeDriver 95.0.4638.69 (6a1600ed572fedecd573b6c2b90a22fe6392a410-refs/branch-heads/4638@{#984}) on port 57369
-Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully.
-[1638302579.126][WARNING]: This version of ChromeDriver has not been tested with Chrome version 96.
-Kas 30, 2021 11:02:59 �S org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: W3C
-Kas 30, 2021 11:02:59 �S org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find an exact match for CDP version 96, so returning the closest version found: 95
-Kas 30, 2021 11:02:59 �S org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-INFO: Found CDP implementation for version 96 of 95
-</system-err>
-  </testcase>
 </testsuite>
