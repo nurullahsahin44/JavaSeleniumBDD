@@ -1,0 +1,14 @@
+{
+  "waitPageLoad": {
+    "elementKey": ""
+  },
+  "elements": {
+    "username textbox": "//*[@id='txtUserName']",
+    "password textbox": "#txtPassword",
+    "login button": "#btnLogin",
+    "login button2": "#btnEmailSelect",
+    "my account": "#myAccount",
+    "fail element": "#myAccountt",
+    "open login page button": "#login"
+  }
+}

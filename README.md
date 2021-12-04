@@ -34,3 +34,5 @@ mvn test -Dcucumber.options="--help"
 mvn test -Dcucumber.options="path of feature"
 
 mvn test -Dcucumber.options="-t @tags"    "@test" is ready
+
+clean install    // and you can see report in target/cucumber-reports/cucumber-html-reports
