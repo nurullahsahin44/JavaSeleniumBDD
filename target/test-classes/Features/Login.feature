@@ -2,7 +2,7 @@ Feature: HepsiBurada Login Case
 
   Background:
     Given I Open To Chrome Browser
-    And I go to application
+    And I open to hepsiburada application
     And screen to maximize
 
 
@@ -13,7 +13,6 @@ Feature: HepsiBurada Login Case
     And I mouseover my account element
     And I wait to 2 seconds
     And I click open login page button element
-    #And I click "Giriş Yap"
 
     Then I see username textbox element
     And I am registered with user1

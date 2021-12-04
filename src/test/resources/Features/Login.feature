@@ -2,7 +2,7 @@ Feature: HepsiBurada Login Case
 
   Background:
     Given I Open To Chrome Browser
-    And I go to application
+    And I open to hepsiburada application
     And screen to maximize
 
 

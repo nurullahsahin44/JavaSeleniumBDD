@@ -3,39 +3,40 @@ package StepDefinitions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
-
 import io.cucumber.java.en.And;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.*;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
-public class MySteps {
-
+public class WebSteps {
 
     public static WebDriver driver = null;
-    Hashtable<String, String> user_dict = new Hashtable<String, String>();
     Hashtable<String, String> my_dict = new Hashtable<String, String>();
     ObjectMapper PAGE = new ObjectMapper();
+    protected Hashtable<String, String> user_dict = new Hashtable<String, String>();
+
     String CurrentPage = "";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MySteps.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebSteps.class);
 
-
-    public MySteps() {
-        driver = Hooks.driver;
+    public WebSteps() {
+        this.driver = Hooks.driver;
     }
-
 
     @And("^I see (\\w+(?: \\w+)*) page")
     public void seePage(String page) throws IOException, ParseException {
@@ -68,7 +69,6 @@ public class MySteps {
                 .until(driver -> driver.findElement(element));
     }
 
-
     By findSelector(String element) throws IOException, ParseException {
         By EE = null;
         Object document = null;
@@ -96,48 +96,6 @@ public class MySteps {
         return EE;
     }
 
-    @And("^I am registered with (\\w+(?: \\w+)*)")
-    public void registeredInformation(String user) throws IOException, ParseException {
-        findAndSaveUser(user);
-    }
-
-    public void findAndSaveUser(String userJson) throws IOException, ParseException {
-        Object document = null;
-        JSONParser parser = new JSONParser();
-        String projectPath = System.getProperty("user.dir");
-        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Users\\" + userJson + ".json"));
-        JSONObject jsonObject = (JSONObject) obj;
-        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
-        String userName = JsonPath.read(document, "$.username");
-        String password = JsonPath.read(document, "$.password");
-        user_dict.put("my username", userName);
-        user_dict.put("my password", password);
-    }
-
-    @And("^I fill:")
-    public void seeElementAndFill(Map<String, String> map) throws IOException, ParseException {
-        for (String key : map.keySet()) {
-            if (!map.get(key).equals("my username") && !map.get(key).equals("my password")) {
-                By elementKey = findSelector(key);
-                driver.findElement(elementKey).sendKeys(map.get(key));
-                LOGGER.info("FILLED " + elementKey + " = " + map.get(key));
-                System.out.println("FILLED " + elementKey + " = " + map.get(key));
-            } else if (map.get(key).equals("my username")) {
-                String username = user_dict.get("my username");
-                By elementKey = findSelector(key);
-                driver.findElement(elementKey).sendKeys(username);
-                LOGGER.info("FILLED " + elementKey + " = " + username);
-                System.out.println("FILLED " + elementKey + " = " + username);
-            } else {
-                String password = user_dict.get("my password");
-                By elementKey = findSelector(key);
-                driver.findElement(elementKey).sendKeys(password);
-                LOGGER.info("FILLED " + elementKey + " = " + password);
-                System.out.println("FILLED " + elementKey + " = " + password);
-            }
-        }
-    }
-
 
     @And("^I click (\\w+(?: \\w+)*) element")
     public void seeElementAndClick(String element) throws IOException, ParseException {
@@ -146,6 +104,37 @@ public class MySteps {
             driver.findElement(elementKey).click();
             LOGGER.info("CLICKED " + element);
             System.out.println("CLICKED " + element);
+        } catch (Exception ee) {
+            Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
+        }
+    }
+
+    @And("^I double click (\\w+(?: \\w+)*) element")
+    public void doubleClick(String element) throws IOException, ParseException {
+        By elementKey = findSelector(element);
+        Actions act = new Actions(driver);
+        try {
+            act.doubleClick(driver.findElement(elementKey)).perform();
+            LOGGER.info("DOUBLE CLICKED " + element);
+            System.out.println("DOUBLE CLICKED " + element);
+        } catch (Exception ee) {
+            Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
+        }
+    }
+
+    @And("^I double click  \"([^\"]*)\" and (\\d+|last)th")
+    public void doubleClickText(String text,String order){
+        By elementKey = null;
+        Actions act = new Actions(driver);
+        if(!order.equals("last")){
+            elementKey =By.xpath("(//*[text()='"+ text +"'])["+ order +"]");
+        }else{
+            elementKey =By.xpath("(//*[text()='"+ text +"'])["+ order +"()]");
+        }
+        try {
+            act.doubleClick(driver.findElement(elementKey)).perform();
+            LOGGER.info("DOUBLE CLICKED " + elementKey);
+            System.out.println("DOUBLE CLICKED " + elementKey);
         } catch (Exception ee) {
             Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
         }
@@ -168,6 +157,19 @@ public class MySteps {
         } catch (Exception ee) {
             Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
         }
+    }
+
+    @And("^I mouseover \"([^\"]*)\" and (\\d+|last)th")
+    public void mouseOverText(String text, String order){
+        By elementKey = null;
+        if(!order.equals("last")){
+            elementKey =By.xpath("(//*[text()='"+ text +"'])["+ order +"]");
+        }else{
+            elementKey =By.xpath("(//*[text()='"+ text +"'])["+ order +"()]");
+        }
+        Actions action = new Actions(driver);
+        WebElement we = driver.findElement(elementKey);
+        action.moveToElement(we).moveToElement(driver.findElement(elementKey)).build().perform();
     }
 
 
@@ -246,6 +248,11 @@ public class MySteps {
         driver.manage().window().maximize();
     }
 
+    @And("^switch to new window$")
+    public void switchTab() {
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(1));
+    }
 
     @And("^I wait to (\\d+) seconds$")
     public void Sleep(int second) throws InterruptedException {
@@ -255,9 +262,47 @@ public class MySteps {
     }
 
 
-    @And("^switch to new window$")
-    public void switchTab() {
-        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
+    @And("^I am registered with (\\w+(?: \\w+)*)")
+    public void registeredInformation(String user) throws IOException, ParseException {
+        findAndSaveUser(user);
     }
+
+    public void findAndSaveUser(String userJson) throws IOException, ParseException {
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        String projectPath = System.getProperty("user.dir");
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Users\\" + userJson + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String userName = JsonPath.read(document, "$.username");
+        String password = JsonPath.read(document, "$.password");
+        user_dict.put("my username", userName);
+        user_dict.put("my password", password);
+    }
+
+
+    @And("^I fill:")
+    public void seeElementAndFill(Map<String, String> map) throws IOException, ParseException {
+        for (String key : map.keySet()) {
+            if (!map.get(key).equals("my username") && !map.get(key).equals("my password")) {
+                By elementKey = findSelector(key);
+                driver.findElement(elementKey).sendKeys(map.get(key));
+                LOGGER.info("FILLED " + elementKey + " = " + map.get(key));
+                System.out.println("FILLED " + elementKey + " = " + map.get(key));
+            } else if (map.get(key).equals("my username")) {
+                String username = user_dict.get("my username");
+                By elementKey = findSelector(key);
+                driver.findElement(elementKey).sendKeys(username);
+                LOGGER.info("FILLED " + elementKey + " = " + username);
+                System.out.println("FILLED " + elementKey + " = " + username);
+            } else {
+                String password = user_dict.get("my password");
+                By elementKey = findSelector(key);
+                driver.findElement(elementKey).sendKeys(password);
+                LOGGER.info("FILLED " + elementKey + " = " + password);
+                System.out.println("FILLED " + elementKey + " = " + password);
+            }
+        }
+    }
+
 }

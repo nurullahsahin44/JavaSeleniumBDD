@@ -1,15 +1,24 @@
 package StepDefinitions;
 
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -39,9 +48,20 @@ public class Hooks {
     }
 
 
-    @And("^I go to application")
-    public void go_to_link() {
-        driver.navigate().to(URL);
+    @And("^I open to (\\w+(?: \\w+)*) application")
+    public void openToApplication(String application) throws IOException, ParseException {
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        String projectPath = System.getProperty("user.dir");
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Applications\\" + application + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String application_url = JsonPath.read(document, "$.URL");
+        try{
+            driver.navigate().to(application_url);
+        }catch (Exception ee){
+            Assert.fail("COULD NOT OPEN APPLICATION, DIDN'T FIND URL or NOT URL");
+        }
     }
 
     @After(value = "not @API", order = -1)
