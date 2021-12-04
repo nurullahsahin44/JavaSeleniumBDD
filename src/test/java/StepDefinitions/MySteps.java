@@ -151,6 +151,27 @@ public class MySteps {
         }
     }
 
+
+    // if this text more than one, you can choose any parameters, but text have 1 elementKey you can choose 1
+    @And("^I click \"([^\"]*)\" and (\\d+|last)th")
+    public void seeElementAndClickToText(String text, String order) throws IOException, ParseException {
+        By elementKey = null;
+        if(!order.equals("last")){
+            elementKey =By.xpath("(//*[text()='"+ text +"'])["+ order +"]");
+        }else{
+            elementKey =By.xpath("(//*[text()='"+ text +"'])["+ order +"()]");
+        }
+        try {
+            driver.findElement(elementKey).click();
+            LOGGER.info("CLICKED " + text);
+            System.out.println("CLICKED " + text);
+        } catch (Exception ee) {
+            Assert.fail("COULD NOT FIND ELEMENT : " + elementKey);
+        }
+    }
+
+
+
     @And("^I mouseover (\\w+(?: \\w+)*) element")
     public void mouseOverPageAndElement(String element) throws IOException, ParseException {
         By elementKey = findSelector(element);

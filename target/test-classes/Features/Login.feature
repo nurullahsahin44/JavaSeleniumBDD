@@ -13,17 +13,18 @@ Feature: HepsiBurada Login Case
     And I mouseover my account element
     And I wait to 2 seconds
     And I click open login page button element
+    #And I click "Giriş Yap"
 
     Then I see username textbox element
     And I am registered with user1
     When I fill:
       | username textbox | my username |
-    And I click login button element
+    And I click "Giriş yap" and 2th
 
     Then I see password textbox element
     When I fill:
       | password textbox | my password |
-    And I click login button2 element
+    And I click "Giriş yap" and lastth
 
     Then I see home page
     Then I see profile name element
