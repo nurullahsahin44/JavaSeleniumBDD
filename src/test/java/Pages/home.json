@@ -1,6 +1,6 @@
 {
   "waitPageLoad": {
-    "elementKey": "profile name"
+    "elementKey": ""
   },
   "elements": {
     "elektronic categories": "//*[contains(@class,'navigationBar')]//span[text()='Elektronik']",

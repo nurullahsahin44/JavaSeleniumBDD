@@ -26,7 +26,7 @@ Feature: HepsiBurada Login Case
     And I click "Giriş yap" and lastth
 
     Then I see home page
-    Then I see profile name element
+    Then I see profile name element in 20 seconds
     When I save profile name element, get text and save the profile
     Then I verify the profile equals "bites otomasyon" with text
 

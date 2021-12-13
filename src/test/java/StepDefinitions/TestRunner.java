@@ -11,7 +11,7 @@ monochrome = true,
 
   },
 
-  tags="@test"
+  tags="@test2"
         )
 public class TestRunner {
 
