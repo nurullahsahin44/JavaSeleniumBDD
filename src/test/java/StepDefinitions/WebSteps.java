@@ -29,7 +29,6 @@ public class WebSteps {
     Hashtable<String, String> my_dict = new Hashtable<String, String>();
     ObjectMapper PAGE = new ObjectMapper();
     protected Hashtable<String, String> user_dict = new Hashtable<String, String>();
-
     String CurrentPage = "";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSteps.class);
@@ -240,25 +239,6 @@ public class WebSteps {
         } else {
             Assert.fail(my_dict.get(value1) + " EQUALS " + my_dict.get(value2));
         }
-    }
-
-
-    @And("^screen to maximize$")
-    public void maximize() {
-        driver.manage().window().maximize();
-    }
-
-    @And("^switch to new window$")
-    public void switchTab() {
-        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs2.get(1));
-    }
-
-    @And("^I wait to (\\d+) seconds$")
-    public void Sleep(int second) throws InterruptedException {
-        long time = second * 1000;
-        Thread.sleep(time);
-
     }
 
 

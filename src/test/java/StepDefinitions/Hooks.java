@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 public class Hooks {
 
     public static WebDriver driver = null;
-    String URL = "https://hepsiburada.com";
 
     @Given("^I Open To (Chrome|Firefox) Browser$")
     public void open_chrome_browser(String browser) {
