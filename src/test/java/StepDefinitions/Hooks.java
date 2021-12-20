@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import io.cucumber.java.After;
@@ -19,11 +20,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
     public static WebDriver driver = null;
+    public static Hashtable<String, String> my_dict = new Hashtable<String, String>();
+    public static Hashtable<String, String> user_dict = new Hashtable<String, String>();
+    public static String currentPage="";
+
 
     @Given("^I Open To (Chrome|Firefox) Browser$")
     public void open_chrome_browser(String browser) {

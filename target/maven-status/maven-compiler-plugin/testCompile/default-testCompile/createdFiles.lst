@@ -1,3 +1,4 @@
+StepDefinitions\BaseSteps.class
 StepDefinitions\Hooks.class
 StepDefinitions\API.class
 StepDefinitions\TestRunner.class

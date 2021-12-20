@@ -25,21 +25,26 @@ import java.util.Map;
 
 public class WebSteps {
 
-    public static WebDriver driver = null;
-    Hashtable<String, String> my_dict = new Hashtable<String, String>();
-    ObjectMapper PAGE = new ObjectMapper();
-    protected Hashtable<String, String> user_dict = new Hashtable<String, String>();
-    String CurrentPage = "";
+    public static WebDriver driver;
+    public static Hashtable<String, String> my_dict;
+    public static Hashtable<String, String> user_dict;
+    public static String currentPage;
+    Hooks hooks;
+    BaseSteps baseSteps;
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSteps.class);
 
     public WebSteps() {
         this.driver = Hooks.driver;
+        this.my_dict = Hooks.my_dict;
+        this.user_dict = Hooks.user_dict;
+        this.currentPage = Hooks.currentPage;
     }
 
     @And("^I see (\\w+(?: \\w+)*) page")
     public void seePage(String page) throws IOException, ParseException {
-        CurrentPage = page;
+        currentPage = page;
         Object document = null;
         JSONParser parser = new JSONParser();
         String projectPath = System.getProperty("user.dir");
@@ -73,10 +78,10 @@ public class WebSteps {
         Object document = null;
         JSONParser parser = new JSONParser();
         Object page = null;
-        if (CurrentPage.equals("")) {
+        if (currentPage.equals("")) {
             Assert.fail("BEFORE TEST STEPS HAVE TO SEE ANY PAGE 'I see *** page' ");
         } else {
-            page = CurrentPage;
+            page = currentPage;
         }
         String projectPath = System.getProperty("user.dir");
         Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Pages\\" + page + ".json"));
@@ -241,24 +246,6 @@ public class WebSteps {
         }
     }
 
-
-    @And("^I am registered with (\\w+(?: \\w+)*)")
-    public void registeredInformation(String user) throws IOException, ParseException {
-        findAndSaveUser(user);
-    }
-
-    public void findAndSaveUser(String userJson) throws IOException, ParseException {
-        Object document = null;
-        JSONParser parser = new JSONParser();
-        String projectPath = System.getProperty("user.dir");
-        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\Users\\" + userJson + ".json"));
-        JSONObject jsonObject = (JSONObject) obj;
-        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
-        String userName = JsonPath.read(document, "$.username");
-        String password = JsonPath.read(document, "$.password");
-        user_dict.put("my username", userName);
-        user_dict.put("my password", password);
-    }
 
 
     @And("^I fill:")
