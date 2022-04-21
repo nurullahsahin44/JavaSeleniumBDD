@@ -1,12 +1,22 @@
 package StepDefinitions;
 
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,71 +24,133 @@ import static io.restassured.RestAssured.given;
 
 public class API {
 
-    @And("^I execute GET parameters URL:(.*) PATH:(.*) RESPONSECODE:(\\d+)$")
-    public void get(String URL, String PATH, int RESPONSECODE){
-        given()
-                .when()
-                .get(URL+PATH)
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseSteps.class);
 
-                .then()
-                .statusCode(RESPONSECODE);
+
+    @And("^I execute (.*) template rest service")
+    public void request(String template) throws IOException, ParseException {
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        String projectPath = System.getProperty("user.dir");
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\RestClients\\" + template + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String url = JsonPath.read(document, "$.Url");
+        String method = JsonPath.read(document, "$.method");
+        String checkCode = JsonPath.read(document, "$.responseCode");
+        String content = JsonPath.read(document, "$.contentType");
+        String check = JsonPath.read(document, "$.check");
+        if(method.equals("get")){
+            given()
+                    .when()
+                    .get(url)
+
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode));
+        }else if (method.equals("post")){
+            given()
+                    .when()
+                    .post(url)
+
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode));
+        }else if (method.equals("put")){
+            given()
+                    .when()
+                    .put(url)
+
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode));
+        }else if (method.equals("delete")){
+            given()
+                    .when()
+                    .delete(url)
+
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode));
+        }else {
+            Assert.fail("Your method is failed");
+        }
+        LOGGER.info("Requested to "+url);
+        System.out.println("Requested to "+url);
     }
 
 
-    @And("^I execute POST parameters URL:(.*) PATH:(.*) RESPONSECODE:(\\d+) CHECK:(.*) BODY:$")
-    public void post(String URL, String PATH, int RESPONSECODE , String CHECK, DataTable map){
+    @And("^I execute (.*) template rest service with parameters:")
+    public void requestWithBody(String template,DataTable map) throws IOException, ParseException {
 
-        Response res =
+        Object document = null;
+        JSONParser parser = new JSONParser();
+        String projectPath = System.getProperty("user.dir");
+        Object obj = parser.parse(new FileReader(projectPath + "\\src\\test\\java\\RestClients\\" + template + ".json"));
+        JSONObject jsonObject = (JSONObject) obj;
+        document = Configuration.defaultConfiguration().jsonProvider().parse(jsonObject.toJSONString());
+        String url = JsonPath.read(document, "$.Url");
+        String method = JsonPath.read(document, "$.method");
+        String checkCode = JsonPath.read(document, "$.responseCode");
+        String content = JsonPath.read(document, "$.contentType");
+        String check = JsonPath.read(document, "$.check");
 
-        given()
-                .contentType("application/json")
-                .body(map)
-        .when()
-                .post(URL+PATH)
-         .then()
-                .statusCode(RESPONSECODE)
-                .log().body()
-                .extract().response();
+        if(method.equals("get")){
+            Response res =
+            given()
+                    .contentType(content)
+                    .body(map)
+                    .when()
+                    .get(url)
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode))
+                    .log().body()
+                    .extract().response();
+            String jsonString = res.asString();
+            Assert.assertEquals(jsonString.contains(check),true);
 
-        String jsonString = res.asString();
-        Assert.assertEquals(jsonString.contains(CHECK),true);
+        }else if (method.equals("post")){
+            Response res =
+            given()
+                    .contentType(content)
+                    .body(map)
+                    .when()
+                    .post(url)
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode))
+                    .log().body()
+                    .extract().response();
+            String jsonString = res.asString();
+            Assert.assertEquals(jsonString.contains(check),true);
+
+        }else if (method.equals("put")){
+            Response res =
+            given()
+                    .contentType(content)
+                    .body(map)
+                    .when()
+                    .put(url)
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode))
+                    .log().body()
+                    .extract().response();
+            String jsonString = res.asString();
+            Assert.assertEquals(jsonString.contains(check),true);
+
+        }else if (method.equals("delete")){
+            Response res =
+            given()
+                    .contentType(content)
+                    .body(map)
+                    .when()
+                    .delete(url)
+                    .then()
+                    .statusCode(Integer.parseInt(checkCode))
+                    .log().body()
+                    .extract().response();
+
+                    String jsonString = res.asString();
+                    Assert.assertEquals(jsonString.contains(check),true);
+        }else {
+            Assert.fail("Your method is failed");
+        }
     }
 
 
-    @And("^I execute PUT parameters URL:(.*) PATH:(.*) RESPONSECODE:(\\d+) CHECK:(.*) BODY:$")
-    public void put(String URL, String PATH, int RESPONSECODE , String CHECK, DataTable map){
-
-        Response res =
-
-                given()
-                        .contentType("application/json")
-                        .body(map)
-                        .when()
-                        .put(URL+PATH)
-                        .then()
-                        .statusCode(RESPONSECODE)
-                        .log().body()
-                        .extract().response();
-
-        String jsonString = res.asString();
-        Assert.assertEquals(jsonString.contains(CHECK),true);
-    }
-
-
-    @And("^I execute DELETE parameters URL:(.*) PATH:(.*) RESPONSECODE:(\\d+) CHECK:(.*)$")
-    public void delete(String URL, String PATH, int RESPONSECODE , String CHECK){
-
-        Response res =
-
-                given()
-                        .when()
-                        .delete(URL+PATH)
-                        .then()
-                        .statusCode(RESPONSECODE)
-                        .log().body()
-                        .extract().response();
-
-        String jsonString = res.asString();
-        Assert.assertEquals(jsonString.contains(CHECK),true);
-    }
 }

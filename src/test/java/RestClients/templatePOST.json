@@ -1,0 +1,7 @@
+{
+  "Url": "https://reqres.in/api/users?page=2",
+  "method": "post",
+  "responseCode": "201",
+  "check": "createdAt",
+  "contentType": "application/json"
+}

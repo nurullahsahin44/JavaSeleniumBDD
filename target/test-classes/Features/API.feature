@@ -22,3 +22,13 @@ Feature: API Tests
   @DELETE
   Scenario: DELETE Test
     Given I execute DELETE parameters URL:https://reqres.in PATH:/api/users/2 RESPONSECODE:204 CHECK:
+
+  @GET
+  Scenario: GET Test
+    And I execute templateGET template rest service
+
+
+  Scenario: POST Test
+    And I execute templatePOST template rest service with parameters:
+      | name | nurullah       |
+      | job  | testAutomation |

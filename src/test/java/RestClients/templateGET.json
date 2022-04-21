@@ -1,0 +1,7 @@
+{
+  "Url": "https://reqres.in/api/users?page=2",
+  "method": "get",
+  "responseCode": "200",
+  "check": "",
+  "contentType": "application/json"
+}
